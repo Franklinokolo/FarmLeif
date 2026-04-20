@@ -1,352 +1,484 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farm Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Dashboard</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap icon  link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 
-<style>
-body {
-    background: #f6f6f6;
-    overflow-x: hidden;
-}
-
-/* SIDEBAR */
-.sidebar {
-    width: 240px;
-    height: 100vh;
-    position: fixed;
-    background: #fff;
-    border-right: 1px solid #eee;
-    padding: 20px;
-}
-
-.sidebar .nav-link {
-    color: #333;
-    border-radius: 10px;
-    margin-bottom: 8px;
-}
-
-.sidebar .nav-link.active {
-    background: #e9ecef;
-    font-weight: 500;
-}
-
-/* MAIN */
-.main {
-    margin-left: 240px;
-    padding: 20px;
-}
-
-/* TOP BAR */
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* CARDS */
-.card {
-    border: none;
-    border-radius: 16px;
-}
-
-.dark-card {
-    background: #000;
-    color: #fff;
-}
-
-/* RIGHT PANEL */
-.right-card {
-    background: #fff;
-    padding: 16px;
-    border-radius: 16px;
-}
-
-.offcanvas {
-        max-width: 60%;
-    }
-
-/* MOBILE */
-@media(max-width:992px){
-    .sidebar {
-        left: -240px;
-        transition: 0.3s;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .main {
-        margin-left: 0;
-    }
-
-    
-}
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
 
-
-</style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-    <h5 class="fw-bold mb-4">🏡</h5>
-
-    <nav class="nav flex-column">
-        <a class="nav-link active">Dashboard</a>
-        <a class="nav-link">Enterprise</a>
-        <a class="nav-link">Activities</a>
-        <a class="nav-link">Assets</a>
-        <a class="nav-link">Transactions</a>
-        <a class="nav-link">Analytics</a>
-        <a class="nav-link">Staff</a>
-        <a class="nav-link">Attendance</a>
-    </nav>
-
-    <div class="mt-auto pt-5">
-        <a class="nav-link">⚙ Settings</a>
-    </div>
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-    <!-- TOPBAR -->
-    <div class="topbar mb-4">
-        <div class="d-flex align-items-center gap-2">
-            <button class="btn btn-light d-lg-none"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">☰</button>
-
-            
+    <!-- SIDEBAR -->
+    <div class="col-md-3  sidebar row gy-md-1" id="sidebar">
+        <div class="col-12 text-center fw-bold">
+            <h5 class="mb-4">🏡 Leif Track</h5>
         </div>
 
-        <div class="d-flex align-items-center gap-3">
-            <div>
-                <small class="text-muted">Switch Enterprise</small><br>
-                <!-- a dashbod switcher based on enterprise -->
-                <select class="form-select form-select-sm border-0 bg-light" style="width: 150px;">
-                    <option>FarmLeif</option>
-                    <option>FarmLeif 2</option>
-                    <option>FarmLeif 3</option>
+        <div class="col-12 mt-4 pe-0">
+            <nav class="nav flex-column gap-2 justify-content-center" style="height: inherit;">
+                <a class="nav-link active "><i class="bi bi-grid-3x2 pe-2"></i> Enterprise</a>
+                <a class="nav-link"><i class="bi bi-calendar2-check pe-2"></i> Activities</a>
+                <a class="nav-link"><i class="bi bi-bank2 pe-2"></i> Assets</a>
+                <a class="nav-link"><i class="bi bi-currency-exchange pe-2"></i> Transactions</a>
+                <a class="nav-link"><i class="bi bi-graph-up pe-2"></i> Analytics</a>
+                <a class="nav-link"><i class="bi bi-people pe-2"></i> Staff</a>
+                <a class="nav-link"><i class="bi bi-clock pe-2"></i> Attendance</a>
+
+                <!-- always be at the bottom    -->
+
+                <a class="nav-link"><i class="bi bi-gear pe-2"></i> Settings</a>
+
+            </nav>
+
+        </div>
+
+
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main ">
+
+        <!-- TOPBAR -->
+        <div class="topbar mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-dark d-lg-none" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+                    <i class="bi bi-list"></i>
+                </button>
+
+
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="text-center">
+                    <small class="text-muted">Switch Enterprise</small><br>
+                    <!-- a dashbod switcher based on enterprise -->
+                    <select class="form-select form-select-sm border-0 text-center" style="width: 150px;">
+                        <option>Green Valley Farm</option>
+                        <option>FarmLeif 2</option>
+                        <option>FarmLeif 3</option>
+                    </select>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row pb-4 d-flex  align-items-center">
+            <div class="col-md-6">
+                <h5 class="mb-0">Good Morning, Franklin</h5>
+                <small class="text-muted">Here’s Overview of how your Farm is Doing.</small>
+            </div>
+
+            <div class="col-md-6 text-end">
+                <div class="dropdown">
+                    <a class="btn btn-secondary bg-dark action-btn btn-sm" btn role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Add New Record <i class="bi bi-plus"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activitymodal">Activities</li>
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transactionmodal">Transactions
+                        </li>
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#salesmodal">Sales</li>
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cyclemodal">Cycle</li>
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#assetmodal">Assets</li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- METRICS -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card profit-card p-3">
+                    <div class="row">
+                        <div class="col-6">
+                            <small>Total Profit</small>
+                        </div>
+                        <div class="col-6 text-end">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                    </div>
+                    <h4>₦10,000,000</h4>
+                    <small>-22.5% from last month</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 white-color">
+                    <div class="row">
+                        <div class="col-6">
+                            <small>Total Income</small>
+                        </div>
+                        <div class="col-6 text-end">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+
+                    </div>
+                    <h4>₦20,000,000</h4>
+                    <small>+12.5%</small>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 bg-light">
+                    <div class="row">
+                        <div class="col-6">
+                            <small>Total Expenses</small>
+                        </div>
+                        <div class="col-6 text-end">
+                            <i class="bi bi-graph-down-arrow"></i>
+                        </div>
+                    </div>
+                    <h4>₦20,000,000</h4>
+                    <small>+12.5%</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHART -->
+        <div class="card  p-4 pb-5 mb-4">
+            <div class="d-flex justify-content-between mb-3">
+                <h6 class="fw-bold">Profit Overview</h6>
+
+                <!-- FILTER -->
+                <select id="chartFilter" class="form-select w-auto">
+                    <option value="monthly">Monthly</option>
+                    <option value="quarter">Quarter</option>
+                    <option value="yearly">Yearly</option>
                 </select>
             </div>
 
-            
-        </div>
-    </div>
-    <div class="row pb-4 d-flex">
-        <div class="col-md-6">
-            <h5 class="mb-0 fw-bold">Good Morning, Franklin</h5>
-            <small class="text-muted">Here’s Overview of how your Farm is Doing.</small>
-        </div>
+            <div class="col-12">
 
-        <div class="col-md-6 text-end">
-            <button class="btn btn-dark rounded-pill px-4">
-                Add New Activity +
-            </button>
-        </div>
-
-    </div>
-    <!-- METRICS -->
-    <div class="row g-3 mb-4">
-        <div class="col-md-4">
-            <div class="card dark-card p-3">
-                <small>Net Profit</small>
-                <h4>₦10,000,000</h4>
-                <small>-22.5% from last month</small>
+                <canvas id="chart" style="width:100%; height:300px;"></canvas>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card p-3 bg-light">
-                <small>Total Income</small>
-                <h4>₦20,000,000</h4>
-                <small>+12.5%</small>
-            </div>
-        </div>
+        <!-- CONTENT -->
+        <div class="row g-4">
 
-        <div class="col-md-4">
-            <div class="card p-3 bg-light">
-                <small>Total Expenses</small>
-                <h4>₦20,000,000</h4>
-                <small>+12.5%</small>
-            </div>
-        </div>
-    </div>
+            <!-- LEFT -->
+            <div class="col-lg-8">
 
-    <!-- CHART -->
-    <div class="card p-4 mb-4">
-        <div class="d-flex justify-content-between mb-3">
-            <h6 class="fw-bold">Profit Overview</h6>
-
-            <!-- FILTER -->
-            <select id="chartFilter" class="form-select w-auto">
-                <option value="monthly">Monthly</option>
-                <option value="quarter">Quarter</option>
-                <option value="yearly">Yearly</option>
-            </select>
-        </div>
-
-        <canvas id="chart"></canvas>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="row g-4">
-
-        <!-- LEFT -->
-        <div class="col-lg-8">
-
-            <div class="card p-3">
-                <div class="d-flex justify-content-between mb-3">
-                    <strong>Recent Activities</strong>
-                    <small>View all activities</small>
-                </div>
-
-                <div class="border-bottom py-2 d-flex justify-content-between">
-                    <div>
-                        <strong>Sold 12 bags of Maize</strong><br>
-                        <small>Farming Dry Season</small>
+                <div class="card p-3">
+                    <div class="d-flex justify-content-between mb-3">
+                        <p>Recent Activities</p>
+                        <small><a href="#" class="link">View all activities</a></small>
                     </div>
-                    <div class="text-end">
-                        <small>Sales</small><br>
-                        <small>26/12/2026</small>
+                    <div class="col-12 activity-list">
+                        <a href="#" class="activity">
+                            <div class=" py-2 d-flex justify-content-between activity-item">
+                                <div>
+                                    <small>Sold 12 bags of Maize</small><br>
+                                    <small>Farming Dry Season</small>
+                                </div>
+                                <div class="text-end">
+                                    <small>Sales</small><br>
+                                    <small>26/12/2026</small>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="activity">
+                            <div class=" py-2 d-flex justify-content-between activity-item">
+                                <div>
+                                    <small>Sold 12 bags of Maize</small><br>
+                                    <small>Farming Dry Season</small>
+                                </div>
+                                <div class="text-end">
+                                    <small>Sales</small><br>
+                                    <small>26/12/2026</small>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="activity">
+                            <div class=" py-2 d-flex justify-content-between activity-item">
+                                <div>
+                                    <small>Sold 12 bags of Maize</small><br>
+                                    <small>Farming Dry Season</small>
+                                </div>
+                                <div class="text-end">
+                                    <small>Sales</small><br>
+                                    <small>26/12/2026</small>
+                                </div>
+                            </div>
+                        </a>
                     </div>
+
                 </div>
 
-                <div class="border-bottom py-2 d-flex justify-content-between">
-                    <div>
-                        <strong>Winned 12 Piglets</strong>
-                    </div>
-                    <div>Harvest</div>
-                </div>
-
-                <div class="py-2 d-flex justify-content-between">
-                    <div>
-                        <strong>Feed the broilers</strong>
-                    </div>
-                    <div>Feeding</div>
-                </div>
             </div>
 
-        </div>
+            <!-- RIGHT -->
+            <div class="col-lg-4">
 
-        <!-- RIGHT -->
-        <div class="col-lg-4">
-
-            <div class="right-card mb-3">
-                <strong>Insights</strong>
-                <p class="mt-2 mb-1">✔ No income recorded this week</p>
-                <p>✔ Spent 40% on Feeding</p>
-            </div>
-
-            <div class="right-card">
-                <div class="d-flex justify-content-between">
-                    <strong>Active Cycles</strong>
-                    <small>View all</small>
+                <div class="right-card mb-3">
+                    <p> <i class="bi bi-lightbulb-fill insight-icon mb-2"></i> Insights</p>
+                    <p class=" insight ">✔ No income recorded this week</p>
+                    <p class="insight">✔ Spent 40% on Feeding</p>
                 </div>
 
-                <div class="bg-light p-2 rounded mt-2">
-                    Maize Dry Season (Day 45)
+                <div class="right-card">
+                    <div class="d-flex justify-content-between">
+                        <strong>Active Cycles</strong>
+                        <small>View all</small>
+                    </div>
+
+                    <div class="bg-light p-2 rounded ">
+                        Maize Dry Season (Day 45 of 90)
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="45"
+                                aria-valuemin="1" aria-valuemax="90">50%</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-light p-2 rounded ">
+                        Poultry Batch A (Week 3)
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="bg-light p-2 rounded mt-2">
-                    Poultry Batch A (Week 3)
-                </div>
             </div>
 
         </div>
 
     </div>
 
-</div>
+    <!-- mobile sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop"
+        aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas-header" style="justify-content: end;">
+            <!-- <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5> -->
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="mobile-sidebar" id="mobile-sidebar">
+                <h5 class="fw-bold mb-4">🏡</h5>
 
-<!-- mobile sidebar -->
- <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div class="mobile-sidebar" id="mobile-sidebar">
-    <h5 class="fw-bold mb-4">🏡</h5>
+                <nav class="nav flex-column">
+                    <a class="nav-link active">Dashboard</a>
+                    <a class="nav-link">Enterprise</a>
+                    <a class="nav-link">Activities</a>
+                    <a class="nav-link">Assets</a>
+                    <a class="nav-link">Transactions</a>
+                    <a class="nav-link">Analytics</a>
+                    <a class="nav-link">Staff</a>
+                    <a class="nav-link">Attendance</a>
+                </nav>
 
-    <nav class="nav flex-column">
-        <a class="nav-link active">Dashboard</a>
-        <a class="nav-link">Enterprise</a>
-        <a class="nav-link">Activities</a>
-        <a class="nav-link">Assets</a>
-        <a class="nav-link">Transactions</a>
-        <a class="nav-link">Analytics</a>
-        <a class="nav-link">Staff</a>
-        <a class="nav-link">Attendance</a>
-    </nav>
-
-    <div class="mt-auto pt-5">
-        <a class="nav-link">⚙ Settings</a>
+                <div class="mt-auto pt-5">
+                    <a class="nav-link">⚙ Settings</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-  </div>
-</div>
 
 
-<!-- SCRIPT -->
-<script>
-function toggleSidebar(){
-    document.getElementById("sidebar").classList.toggle("active");
-}
+    <!-- Activity FormModal -->
+    <div class="modal fade" id="activitymodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="activitymodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="activitymodalLabel">Activity title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-/* CHART DATA */
-const datasets = {
-    monthly: [5000, 9500, 12000, 6000, 11500, 15000, 13000],
-    quarter: [20000, 30000, 25000, 40000],
-    yearly: [120000, 150000, 180000, 200000]
-};
 
-const labels = {
-    monthly: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
-    quarter: ['Q1','Q2','Q3','Q4'],
-    yearly: ['2022','2023','2024','2025']
-};
+    <!-- Asset FormModal -->
+    <div class="modal fade" id="assetmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="assetmodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="assetmodalLabel">Asset title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-const ctx = document.getElementById('chart');
 
-let chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels.monthly,
-        datasets: [{
-            label: 'Profit',
-            data: datasets.monthly,
-            tension: 0.4,
-            borderWidth: 2,
-            pointRadius: 5
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { display: false }
+    <!-- Cycle FormModal -->
+    <div class="modal fade" id="cyclemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="cyclemodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cyclemodalLabel">Start New Cycle</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- a switch between crop form or livestock form   -->
+                    <div class="form-switche">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn primay-btn">🌾Crop</button>
+                            <button type="button" class="btn ">🐔Livestock</button>
+                        </div>
+                    </div>
+                    <form action="#" method="post" id="Cropfrom">
+                        <div class="mb-3">
+                            <label for="cropName" class="form-label">Crop Name</label>
+                            <input type="text" class="form-control" id="cropName" name="cropName"
+                                placeholder="e.g Maize, Rice, etc">
+                        </div>
+
+                        <!-- selection of seasons -->
+                        <div class="mb-3">
+                            <label for="season" class="form-label">Season</label>
+                            <select class="form-select" id="season" name="season">
+                                <option value="">Select Season</option>
+                                <option value="dry">Dry Season</option>
+                                <option value="rainy">Rainy Season</option>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="plantingDate" class="form-label">Starting Date</label>
+                            <input type="date" class="form-control" id="plantingDate" name="plantingDate">
+                        </div>
+
+                         <div class="mb-3">
+                            <label for="plantingDate" class="form-label">Expected Harvest Date</label>
+                            <input type="date" class="form-control" id="plantingDate" name="plantingDate">
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- SCRIPT -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
         }
-    }
-});
 
-/* FILTER CHANGE */
-document.getElementById("chartFilter").addEventListener("change", function(){
-    let val = this.value;
+        /* CHART DATA */
+        const datasets = {
+            monthly: [5000, 9500, 12000, 6000, 11500, 15000, 13000],
+            quarter: [20000, 30000, 25000, 40000],
+            yearly: [120000, 150000, 180000, 200000]
+        };
 
-    chart.data.labels = labels[val];
-    chart.data.datasets[0].data = datasets[val];
-    chart.update();
-});
-</script>
+        const labels = {
+            monthly: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+            quarter: ['Q1', 'Q2', 'Q3', 'Q4'],
+            yearly: ['2022', '2023', '2024', '2025']
+        };
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        const ctx = document.getElementById('chart');
+
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels.monthly,
+                datasets: [{
+                    label: 'Profit',
+                    data: datasets.monthly,
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: '#01ff301e',
+                    borderColor: '#0d6efd',
+                    pointBackgroundColor: '#0d6efd',
+                    pointBorderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: '#0d6efd',
+                        font: {
+                            weight: 'bold',
+                            size: 11
+                        },
+                        formatter: function (value) {
+                            return '₦' + value.toLocaleString();
+                        }
+                    }
+                }
+            }
+        });
+
+        /* FILTER CHANGE */
+        document.getElementById("chartFilter").addEventListener("change", function () {
+            let val = this.value;
+
+            chart.data.labels = labels[val];
+            chart.data.datasets[0].data = datasets[val];
+            chart.update();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,176 @@
+
+        body {
+            background: #06811b33;
+            overflow-x: hidden;
+            font-family: 'poppins', sans-serif;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            background: #06811a;
+            border-right: 1px solid #eee;
+            padding: 20px 0px 20px 20px;
+        }
+
+        .sidebar .nav-link {
+            color: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar .nav-link.active,
+        .sidebar .nav-link:hover {
+            background: #fefeff;
+            cursor: pointer;
+            color: #06811a;
+            border-radius: 12px 0px 0px 12px;
+            font-weight: 400;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* CARDS */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        /* RIGHT PANEL */
+        .right-card {
+            background: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn, .action-btn {
+            border-radius: 12px;
+        }
+
+        .dropdown-item{
+            cursor:pointer;
+        }
+
+        /* all icons */
+        .bi {
+            font-size: 20px;
+        }
+
+        /* colors for the agricultural theme for the dashboard */
+        :root {
+            --primary-color: #06811a;
+            --light-primary-color: #06811b91;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #0dcaf0;
+            --white-color: #ffffff;
+            --dark-color: #000000;
+        }
+
+        /* cards colors */
+        .profit-card {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .white-color {
+            background-color: var(--white-color);
+            color: #06811a;
+        }
+
+
+        .offcanvas {
+            max-width: 60%;
+        }
+
+        /* links */
+        .link {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Activity styles */
+        .activity {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .activity:hover {
+            background: var(--light-primary-color);
+            color: #fff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            border-top: none;
+            transition: 0.2s;
+        }
+
+        .activity {
+            display: block;
+        }
+
+        .activity {
+            border-top: 1px solid var(--light-primary-color);
+            border-radius: 3px;
+
+        }
+
+
+        /* cycles */
+        .progress-bar{
+            background-color:var(--warning-color);
+        }
+
+        /* insight styles */
+        .insight-icon{
+            color:gold;
+        }
+        .insight{
+            font-size:12px;
+        }
+        .insight:not(:last-child){
+            margin-bottom : 12px;
+        }
+
+        /* form styles */
+        .label{
+            font-size:14px;
+            font-weight:500;
+        }
+
+        /* MOBILE */
+        @media(max-width:992px) {
+            .sidebar {
+                left: -240px;
+                transition: 0.3s;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+
+        }
+    
