@@ -302,26 +302,31 @@
     </div>
 
 
-    <!-- Activity FormModal -->
-    <div class="modal fade" id="activitymodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="activitymodalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="activitymodalLabel">Activity title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+  <!-- Activity Form Modal -->
+<div class="modal fade" id="activitymodal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Activity</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            {% load static %}
+            <!-- 🔥 HTMX LOADS FORM HERE -->
+            <div class="modal-body"
+                 hx-get="{% url 'activity_create' %}"
+                 hx-trigger="shown.bs.modal"
+                 hx-target="this"
+                 hx-swap="innerHTML">
+                 
+                <div class="text-center py-4">
+                    Loading form...
                 </div>
             </div>
+
         </div>
     </div>
-
+</div>
 
     <!-- Asset FormModal -->
     <div class="modal fade" id="assetmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -355,16 +360,16 @@
                 </div>
                 <div class="modal-body">
                     <!-- a switch between crop form or livestock form   -->
-                    <div class="form-switche">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn primay-btn">🌾Crop</button>
-                            <button type="button" class="btn ">🐔Livestock</button>
+                    <div class="form-switche mb-3">
+                        <div class="btn-group " role="group" aria-label="Basic example">
+                            <button type="button" class=" cycle-switch active-switch btn btn-sm ">🌾Crop</button>
+                            <button type="button" class=" cycle-switch btn btn-sm">🐔Livestock</button>
                         </div>
                     </div>
-                    <form action="#" method="post" id="Cropfrom">
+                    <form action="#" method="post" id="cropCycleform">
                         <div class="mb-3">
-                            <label for="cropName" class="form-label">Crop Name</label>
-                            <input type="text" class="form-control" id="cropName" name="cropName"
+                            <label for="CycleName" class="form-label">Cycle Name</label>
+                            <input type="text" class="form-control" id="CycleName" name="cropName"
                                 placeholder="e.g Maize, Rice, etc">
                         </div>
 
@@ -389,21 +394,82 @@
                             <input type="date" class="form-control" id="plantingDate" name="plantingDate">
                         </div>
 
+                        <div class='text-end'>
+                            <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm primary-bg">Create Cycle</button>
+                        </div>
+                    </form>
 
+                     <form action="#" method="post" id="livestockCycleform" style="display: none;">
+                        <div class="mb-2">
+                            <label for="CycleName" class="form-label">Cycle Name</label>
+                            <input type="text" class="form-control" id="CycleName" name="CycleName"
+                                placeholder="Broiler Batch A">
+                        </div>
+
+                        <!-- selection of livestock types -->
+                        <div class="mb-2">
+                            <label for="LivestockType" class="form-label">LivestockType</label>
+                            <select class="form-select" id="LivestockType" name="LivestockType">
+                                <option value="poultry">Poultry</option>
+                                <option value="Fishery">Fishery</option>
+                                <option value="Pig">Pig</option>
+                                <option value="Goat">Goat</option>
+                                <option value="Rabbit">Rabbit</option>
+                                <option value="GrassCutter">Grasscutter</option>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="initialCount" class="form-label">Initial Count</label>
+                            <input type="number" class="form-control" id="initialCount" name="initialCount">
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="plantingDate" class="form-label">Starting Date</label>
+                            <input type="date" class="form-control" id="StartingDate" name="StartingDate">
+                        </div>
+
+                         <div class="mb-3">
+                            <label for="ClosingDate" class="form-label">Expected Harvest Date (optional)</label>
+                            <input type="date" class="form-control" id="ClosingDate" name="ClosingDate">
+                        </div>
+
+                        <div class='text-end'>
+                            <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm primary-bg">Create Cycle</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
+               
             </div>
         </div>
     </div>
 
 
 
+<!-- javascript to switch form -->
+<script>
+    let cropform = document.getElementById('cropCycleform')
+    let livestockform = document.getElementById('livestockCycleform')
+    document.querySelectorAll('.cycle-switch').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('.cycle-switch').forEach(btn => btn.classList.remove('active-switch'));
+            this.classList.add('active-switch');
 
+            if (this.textContent.trim() === '🌾Crop') {
+                cropform.style.display = 'block';
+                livestockform.style.display = 'none';
+            } else {
+                cropform.style.display = 'none';
+                livestockform.style.display = 'block';
+            }
+        });
+    });
+    
 
+</script>
 
 
 
@@ -476,6 +542,8 @@
             chart.update();
         });
     </script>
+
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

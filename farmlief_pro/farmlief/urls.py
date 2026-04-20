@@ -19,11 +19,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from Enterprise import views
+from Enterprise.views import enterprise_dashboard
+from Activities.views import activity_create
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.enterprise_dashboard, name="enterprise_dashboard"),
+    path("", enterprise_dashboard, name="enterprise_dashboard"),
+    path('activities/create/', activity_create, name='activity_create'),
+
 ]
 
 # # Serve static files during development

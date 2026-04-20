@@ -92,9 +92,9 @@
             color: #fff;
         }
 
-        .white-color {
-            background-color: var(--white-color);
-            color: #06811a;
+        .primary-bg{
+            background-color:var(--primary-color);
+            color:var(--white-color);
         }
 
 
@@ -151,10 +151,41 @@
         }
 
         /* form styles */
-        .label{
-            font-size:14px;
-            font-weight:500;
+        .modal-title{
+            font-size:16px;
+            font-weight:500px;
         }
+
+        .form-control, .form-select{
+            border-radius: 12px;
+            border: 1px solid var(--light-primary-color);
+        }
+        .form-control:focus, .form-select:focus{
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem var(--light-primary-color);
+        }
+        /* change the select color when option ishover */
+        .form-select option:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        label{
+            font-size:14px;
+            font-weight:normal;
+            color: var(--dark-color)
+        }
+
+        .cycle-switch{
+            border: 1px solid var(--light-primary-color);
+            color:var(--dark-color);
+        }
+
+        .active-switch, .cycle-switch:hover{
+            background-color:var(--primary-color);
+            color:var(--white-color);
+        }
+
 
         /* MOBILE */
         @media(max-width:992px) {
