@@ -16,17 +16,15 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from Enterprise.views import enterprise_dashboard
-from Activities.views import activity_create
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", enterprise_dashboard, name="enterprise_dashboard"),
-    path('activities/create/', activity_create, name='activity_create'),
-
+    path("activities/", include("activities.urls")),
+    path('', include("enterprise.urls")),
 ]
 
 # # Serve static files during development

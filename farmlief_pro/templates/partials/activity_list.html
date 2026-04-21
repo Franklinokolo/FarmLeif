@@ -1,0 +1,17 @@
+{% for activity in activities %}
+<a href="#" class="activity">
+    <div class=" py-2 d-flex justify-content-between activity-item">
+        <div>
+            <small>Sold 12 bags of Maize</small><br>
+            <small>Farming Dry Season</small>
+        </div>
+        <div class="text-end">
+            <small>Sales</small><br>
+            <small>26/12/2026</small>
+        </div>
+    </div>
+</a>
+
+{% empty %}
+<p class="text-muted">No activities yet</p>
+{% endfor %}

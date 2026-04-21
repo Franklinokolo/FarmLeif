@@ -97,7 +97,9 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activitymodal">Activities</li>
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activitymodal"  hx-get="{% url 'activities:activity_create' %}"
+  hx-target="#activityFormContainer"
+  hx-swap="innerHTML">Activities</li>
                         <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transactionmodal">Transactions
                         </li>
                         <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#salesmodal">Sales</li>
@@ -189,8 +191,11 @@
                         <p>Recent Activities</p>
                         <small><a href="#" class="link">View all activities</a></small>
                     </div>
-                    <div class="col-12 activity-list">
-                        <a href="#" class="activity">
+                    <div class="col-12 activity-list" hx-get="/activities/list/"
+     hx-trigger="load, activityAdded from:body"
+     hx-swap="innerHTML">
+                       
+                        <!-- <a href="#" class="activity">
                             <div class=" py-2 d-flex justify-content-between activity-item">
                                 <div>
                                     <small>Sold 12 bags of Maize</small><br>
@@ -201,33 +206,9 @@
                                     <small>26/12/2026</small>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
 
-                        <a href="#" class="activity">
-                            <div class=" py-2 d-flex justify-content-between activity-item">
-                                <div>
-                                    <small>Sold 12 bags of Maize</small><br>
-                                    <small>Farming Dry Season</small>
-                                </div>
-                                <div class="text-end">
-                                    <small>Sales</small><br>
-                                    <small>26/12/2026</small>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="activity">
-                            <div class=" py-2 d-flex justify-content-between activity-item">
-                                <div>
-                                    <small>Sold 12 bags of Maize</small><br>
-                                    <small>Farming Dry Season</small>
-                                </div>
-                                <div class="text-end">
-                                    <small>Sales</small><br>
-                                    <small>26/12/2026</small>
-                                </div>
-                            </div>
-                        </a>
+                       
                     </div>
 
                 </div>
@@ -301,31 +282,23 @@
         </div>
     </div>
 
+<!-- Activity modal -->
+ <div class="modal fade" id="activitymodal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-  <!-- Activity Form Modal -->
-<div class="modal fade" id="activitymodal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Activity</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
 
-            <div class="modal-header">
-                <h5 class="modal-title">Add New Activity</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            {% load static %}
-            <!-- 🔥 HTMX LOADS FORM HERE -->
-            <div class="modal-body"
-                 hx-get="{% url 'activity_create' %}"
-                 hx-trigger="shown.bs.modal"
-                 hx-target="this"
-                 hx-swap="innerHTML">
-                 
-                <div class="text-center py-4">
-                    Loading form...
-                </div>
-            </div>
+      <!-- 🔥 JUST A CONTAINER -->
+      <div class="modal-body" id="activityFormContainer">
+        <div class="text-center py-3">Loading...</div>
+      </div>
 
-        </div>
     </div>
+  </div>
 </div>
 
     <!-- Asset FormModal -->
@@ -448,6 +421,12 @@
     </div>
 
 
+    <script>
+document.getElementById('activitymodal')
+  .addEventListener('hidden.bs.modal', function () {
+    document.getElementById('activityFormContainer').innerHTML = "Loading...";
+});
+</script>
 
 <!-- javascript to switch form -->
 <script>
