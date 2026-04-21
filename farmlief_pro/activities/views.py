@@ -11,7 +11,9 @@ def activity_create(request):
         form = ActivityForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            activity = form.save(commit=False)
+            activity.enterprise = request.user.enterprises.first()
+            activity.save()
 
             return HttpResponse("""
             <script>

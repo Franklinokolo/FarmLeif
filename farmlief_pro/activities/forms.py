@@ -16,6 +16,7 @@ class ActivityForm(forms.ModelForm):
             "title",
             "description",
             "activity_type",
+            "cycle",
             "quantity",
             "unit",
             "cost",
@@ -24,6 +25,7 @@ class ActivityForm(forms.ModelForm):
 
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control"}),
+            "cycle": forms.Select(attrs={"class": "form-select"}),
             "description": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
             "activity_type": forms.Select(attrs={"class": "form-select"}),
             "quantity": forms.NumberInput(attrs={"class": "form-control"}),

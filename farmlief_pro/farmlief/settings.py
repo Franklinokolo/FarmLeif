@@ -108,6 +108,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTH_USER_MODEL = "enterprise.Farmer"
+LOGIN_URL = 'enterprise:login'
+LOGIN_REDIRECT_URL = 'enterprise:dashboard'
+LOGOUT_REDIRECT_URL = 'enterprise:login'
+
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 

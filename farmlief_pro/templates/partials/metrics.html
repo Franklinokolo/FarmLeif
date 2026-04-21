@@ -1,0 +1,83 @@
+<!-- METRICS -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card profit-card p-3">
+            <div class="row">
+                <div class="col-6">
+                    <small>Total Profit</small>
+                </div>
+                <div class="col-6 text-end">
+                    <i class="bi {% if profit_change > 0 %}
+        bi-graph-up-arrow text-success
+    {% elif profit_change < 0 or total_profit < 0 %}
+        bi-graph-down-arrow text-danger
+    {% else %}
+        bi-dash
+    {% endif %}"></i>
+                </div>
+            </div>
+            <h4>₦{{total_profit}}</h4>
+            <small class="
+                    {% if profit_change > 0 %}
+        text-success
+    {% elif profit_change < 0 or total_profit < 0 %}
+        text-danger
+    {% else %}
+        text-muted
+    {% endif %}"> {{ profit_change }}% from last month</small>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 white-color">
+            <div class="row">
+                <div class="col-6">
+                    <small>Total Income</small>
+                </div>
+                <div class="col-6 text-end">
+                  <i class="bi
+    {% if income_change > 0 %}
+        bi-graph-up-arrow text-success
+    {% elif income_change < 0 %}
+        bi-graph-down-arrow text-danger
+    {% else %}
+        bi-dash text-muted
+    {% endif %}">
+</i>
+                </div>
+
+            </div>
+            <h4>₦{{total_income}}</h4>
+            <small class=" {% if income_change > 0 %}
+         text-success
+    {% elif income_change < 0 %}
+         text-danger
+    {% else %}
+        bi-dash text-muted
+    {% endif %}">{{ income_change }}% from last month</small>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-3 bg-light">
+            <div class="row">
+                <div class="col-6">
+                    <small>Total Expenses</small>
+                </div>
+                <div class="col-6 text-end">
+  <i class="bi
+    {% if expense_change > 0 %}
+        bi-graph-up-arrow text-danger
+    {% elif expense_change < 0 %}
+        bi-graph-down-arrow text-success
+    {% else %}
+        bi-dash text-muted
+    {% endif %}">
+</i>
+                </div>
+            </div>
+            <h4>₦{{total_expenses}}</h4>
+            <small>{{ expense_change }}% from last month</small>
+        </div>
+    </div>
+</div>

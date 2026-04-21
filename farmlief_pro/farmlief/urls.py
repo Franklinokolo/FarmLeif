@@ -25,6 +25,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("activities/", include("activities.urls")),
     path('', include("enterprise.urls")),
+    path('transactions/', include('transactions.urls')),
 ]
 
 # # Serve static files during development

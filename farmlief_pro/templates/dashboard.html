@@ -97,9 +97,9 @@
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activitymodal"  hx-get="{% url 'activities:activity_create' %}"
-  hx-target="#activityFormContainer"
-  hx-swap="innerHTML">Activities</li>
+                        <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#activitymodal"
+                            hx-get="{% url 'activities:activity_create' %}" hx-target="#activityFormContainer"
+                            hx-swap="innerHTML">Activities</li>
                         <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#transactionmodal">Transactions
                         </li>
                         <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#salesmodal">Sales</li>
@@ -113,52 +113,8 @@
 
         </div>
         <!-- METRICS -->
-        <div class="row g-3 mb-4">
-            <div class="col-md-4">
-                <div class="card profit-card p-3">
-                    <div class="row">
-                        <div class="col-6">
-                            <small>Total Profit</small>
-                        </div>
-                        <div class="col-6 text-end">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
-                    </div>
-                    <h4>₦10,000,000</h4>
-                    <small>-22.5% from last month</small>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card p-3 white-color">
-                    <div class="row">
-                        <div class="col-6">
-                            <small>Total Income</small>
-                        </div>
-                        <div class="col-6 text-end">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
-
-                    </div>
-                    <h4>₦20,000,000</h4>
-                    <small>+12.5%</small>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card p-3 bg-light">
-                    <div class="row">
-                        <div class="col-6">
-                            <small>Total Expenses</small>
-                        </div>
-                        <div class="col-6 text-end">
-                            <i class="bi bi-graph-down-arrow"></i>
-                        </div>
-                    </div>
-                    <h4>₦20,000,000</h4>
-                    <small>+12.5%</small>
-                </div>
-            </div>
+        <div id="metricsContainer" hx-get="{% url 'enterprise:metrics_partial' %}"
+            hx-trigger="load, transactionAdded from:body" hx-swap="innerHTML">
         </div>
 
         <!-- CHART -->
@@ -168,16 +124,20 @@
 
                 <!-- FILTER -->
                 <select id="chartFilter" class="form-select w-auto">
-                    <option value="monthly">Monthly</option>
-                    <option value="quarter">Quarter</option>
-                    <option value="yearly">Yearly</option>
-                </select>
+    <option value="monthly" {% if chart_mode == "monthly" %}selected{% endif %}>Monthly</option>
+    <option value="weekly" {% if chart_mode == "weekly" %}selected{% endif %}>Weekly</option>
+    <option value="yearly" {% if chart_mode == "yearly" %}selected{% endif %}>Yearly</option>
+</select>
             </div>
 
             <div class="col-12">
-
+                <div id="chartContainer"
+     hx-get="?chart={{ chart_mode }}"
+     hx-trigger="transactionAdded from:body"
+     hx-swap="innerHTML">
                 <canvas id="chart" style="width:100%; height:300px;"></canvas>
             </div>
+        </div>
         </div>
 
         <!-- CONTENT -->
@@ -191,10 +151,9 @@
                         <p>Recent Activities</p>
                         <small><a href="#" class="link">View all activities</a></small>
                     </div>
-                    <div class="col-12 activity-list" hx-get="/activities/list/"
-     hx-trigger="load, activityAdded from:body"
-     hx-swap="innerHTML">
-                       
+                    <div class="col-12 activity-list" hx-get="{% url 'activities:activity_list' %}"
+                        hx-trigger="load, activityAdded from:body" hx-swap="innerHTML">
+
                         <!-- <a href="#" class="activity">
                             <div class=" py-2 d-flex justify-content-between activity-item">
                                 <div>
@@ -208,7 +167,7 @@
                             </div>
                         </a> -->
 
-                       
+
                     </div>
 
                 </div>
@@ -282,24 +241,46 @@
         </div>
     </div>
 
-<!-- Activity modal -->
- <div class="modal fade" id="activitymodal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
+    <!-- Activity modal -->
+    <div class="modal fade" id="activitymodal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-      <div class="modal-header">
-        <h5 class="modal-title">Add Activity</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
 
-      <!-- 🔥 JUST A CONTAINER -->
-      <div class="modal-body" id="activityFormContainer">
-        <div class="text-center py-3">Loading...</div>
-      </div>
+                <!-- 🔥 JUST A CONTAINER -->
+                <div class="modal-body" id="activityFormContainer">
+                    <div class="text-center py-3">Loading...</div>
+                </div>
 
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+    <!-- Transaction FormModal -->
+    <div class="modal fade" id="transactionmodal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 🔥 JUST A CONTAINER -->
+                <div class="modal-body" id="transactionFormContainer"
+                    hx-get="{% url 'transactions:create_transaction' %}" hx-trigger="load" hx-swap="innerHTML">
+
+                    <div class="text-center py-3">Loading...</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <!-- Asset FormModal -->
     <div class="modal fade" id="assetmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -362,7 +343,7 @@
                             <input type="date" class="form-control" id="plantingDate" name="plantingDate">
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="plantingDate" class="form-label">Expected Harvest Date</label>
                             <input type="date" class="form-control" id="plantingDate" name="plantingDate">
                         </div>
@@ -373,7 +354,7 @@
                         </div>
                     </form>
 
-                     <form action="#" method="post" id="livestockCycleform" style="display: none;">
+                    <form action="#" method="post" id="livestockCycleform" style="display: none;">
                         <div class="mb-2">
                             <label for="CycleName" class="form-label">Cycle Name</label>
                             <input type="text" class="form-control" id="CycleName" name="CycleName"
@@ -404,7 +385,7 @@
                             <input type="date" class="form-control" id="StartingDate" name="StartingDate">
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="ClosingDate" class="form-label">Expected Harvest Date (optional)</label>
                             <input type="date" class="form-control" id="ClosingDate" name="ClosingDate">
                         </div>
@@ -415,113 +396,133 @@
                         </div>
                     </form>
                 </div>
-               
+
             </div>
         </div>
     </div>
 
 
     <script>
-document.getElementById('activitymodal')
-  .addEventListener('hidden.bs.modal', function () {
-    document.getElementById('activityFormContainer').innerHTML = "Loading...";
-});
-</script>
+        document.getElementById('activitymodal')
+            .addEventListener('hidden.bs.modal', function () {
+                document.getElementById('activityFormContainer').innerHTML = "Loading...";
+            });
 
-<!-- javascript to switch form -->
-<script>
-    let cropform = document.getElementById('cropCycleform')
-    let livestockform = document.getElementById('livestockCycleform')
-    document.querySelectorAll('.cycle-switch').forEach(button => {
-        button.addEventListener('click', function () {
-            document.querySelectorAll('.cycle-switch').forEach(btn => btn.classList.remove('active-switch'));
-            this.classList.add('active-switch');
-
-            if (this.textContent.trim() === '🌾Crop') {
-                cropform.style.display = 'block';
-                livestockform.style.display = 'none';
-            } else {
-                cropform.style.display = 'none';
-                livestockform.style.display = 'block';
-            }
-        });
-    });
-    
-
-</script>
+        document.getElementById('transactionmodal')
+            .addEventListener('hidden.bs.modal', function () {
+                document.getElementById('transactionFormContainer').innerHTML =
+                    '<div class="text-center py-3">Loading...</div>';
+            });
 
 
-
-
-    <!-- SCRIPT -->
-    <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("active");
-        }
-
-        /* CHART DATA */
-        const datasets = {
-            monthly: [5000, 9500, 12000, 6000, 11500, 15000, 13000],
-            quarter: [20000, 30000, 25000, 40000],
-            yearly: [120000, 150000, 180000, 200000]
-        };
-
-        const labels = {
-            monthly: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-            quarter: ['Q1', 'Q2', 'Q3', 'Q4'],
-            yearly: ['2022', '2023', '2024', '2025']
-        };
-
-        const ctx = document.getElementById('chart');
-
-        let chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels.monthly,
-                datasets: [{
-                    label: 'Profit',
-                    data: datasets.monthly,
-                    tension: 0.4,
-                    borderWidth: 2,
-                    pointRadius: 5,
-                    fill: true,
-                    backgroundColor: '#01ff301e',
-                    borderColor: '#0d6efd',
-                    pointBackgroundColor: '#0d6efd',
-                    pointBorderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        color: '#0d6efd',
-                        font: {
-                            weight: 'bold',
-                            size: 11
-                        },
-                        formatter: function (value) {
-                            return '₦' + value.toLocaleString();
-                        }
-                    }
-                }
-            }
-        });
-
-        /* FILTER CHANGE */
-        document.getElementById("chartFilter").addEventListener("change", function () {
-            let val = this.value;
-
-            chart.data.labels = labels[val];
-            chart.data.datasets[0].data = datasets[val];
-            chart.update();
-        });
     </script>
 
+    <!-- javascript to switch form -->
+    <script>
+        let cropform = document.getElementById('cropCycleform')
+        let livestockform = document.getElementById('livestockCycleform')
+        document.querySelectorAll('.cycle-switch').forEach(button => {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('.cycle-switch').forEach(btn => btn.classList.remove('active-switch'));
+                this.classList.add('active-switch');
+
+                if (this.textContent.trim() === '🌾Crop') {
+                    cropform.style.display = 'block';
+                    livestockform.style.display = 'none';
+                } else {
+                    cropform.style.display = 'none';
+                    livestockform.style.display = 'block';
+                }
+            });
+        });
+
+
+    </script>
+
+
+
+
+  {{ chart_labels|json_script:"labels-data" }}
+{{ chart_income|json_script:"income-data" }}
+{{ chart_expense|json_script:"expense-data" }}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    let labels = JSON.parse(document.getElementById("labels-data").textContent);
+    let incomeData = JSON.parse(document.getElementById("income-data").textContent);
+    let expenseData = JSON.parse(document.getElementById("expense-data").textContent);
+
+    const ctx = document.getElementById('chart');
+
+    if (!ctx) return;
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Income',
+                    data: incomeData,
+                    borderColor: 'green',
+                    tension: 0.4
+                },
+                {
+                    label: 'Expenses',
+                    data: expenseData,
+                    borderColor: 'red',
+                    tension: 0.4
+                }
+            ],
+            options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+        legend: {
+            display: true,
+            position: 'top',
+            labels: {
+                usePointStyle: true,
+                boxWidth: 8
+            }
+        },
+
+        tooltip: {
+            callbacks: {
+                label: function (context) {
+                    return context.dataset.label + ': ₦' + context.parsed.y.toLocaleString();
+                }
+            }
+        },
+
+        datalabels: {
+            anchor: 'end',
+            align: 'top',
+            color: '#333',
+            font: {
+                weight: 'bold',
+                size: 11
+            },
+            formatter: function (value) {
+                return '₦' + value.toLocaleString();
+            }
+        }
+    },
+
+    scales: {
+        y: {
+            beginAtZero: true
+        }
+    }
+}
+        }
+        
+    });
+
+});
+</script>
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

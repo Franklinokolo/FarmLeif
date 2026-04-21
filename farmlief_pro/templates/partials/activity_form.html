@@ -1,5 +1,5 @@
 <form 
-  hx-post="{% url 'activity_create' %}" 
+  hx-post="{% url 'activities:activity_create' %}" 
   hx-target="#activityFormContainer"
   hx-swap="innerHTML"
 >
@@ -12,6 +12,14 @@
     {{ form.title }}
     <div class="text-danger small">{{ form.title.errors }}</div>
   </div>
+
+  <!-- CYCLE -->
+  <div class="mb-3">
+    <label class="form-label">Cycle</label>
+    {{ form.cycle }}
+    <div class="text-danger small">{{ form.cycle.errors }}</div>
+  </div>
+
 
   <!-- TYPE -->
   <div class="mb-3">
