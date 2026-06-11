@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leif Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+   
+
+  
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <div class="sidebar col-lg-2" id="sidebar">
+                <div class="menu-top-logo mb-2 text-start py-3">
+                    <h4 class="logo text-white">🌿 Leif</h4>
+                </div>
+
+                <div class="side-menu">
+                    <a href="#" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="#"><i class="bi bi-grid"></i> Enterprise</a>
+                    <a href="#"><i class="bi bi-check-circle"></i> Activities</a>
+                    <a href="#"><i class="bi bi-box"></i> Assets</a>
+                    <a href="#"><i class="bi bi-list-task"></i> Task</a>
+                    <a href="#"><i class="bi bi-currency-dollar"></i> Transactions</a>
+                    <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
+                    <a href="#"><i class="bi bi-people"></i> Staff</a>
+                    <a href="#"><i class="bi bi-gear"></i> Settings</a>
+                </div>
+            </div>
+
+
+            <!-- MAIN -->
+            <div class="main  col-lg-10">
+
+                <!-- TOP BAR -->
+
+                <nav class="navbar topbar navbar-expand-lg navbar-light bg-light ">
+                    <div class="container-fluid px-0 ">
+                        <a class="navbar-brand s4" href="#">Staffs</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#mobilemenu" aria-controls="navbarText" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="topbar-pane">
+                            <div class="row align-items-center g-auto">
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary switcher dropdown-toggle" type="button"
+                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Green Valley Farm
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li class="dropdown-item" href="#">Poultry Farm</li>
+                                            <li class="dropdown-item" href="#">Gaot Farm</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row d-flex align-items-center profile-pane gap-2">
+                                        <div class="profile-img col-2">
+                                            <img src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
+                                                alt="" class="rounded-pill" width="32px">
+
+                                        </div>
+                                        <div class="col-auto profile-text">
+                                            <p class="s2 bold mb-0">Franklin Okolo</p>
+                                            <small class="s1">Farm Manager</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <div class="main-content pt-5 mb-5">
+                    <!-- GREETIINGS  -->
+                    <div class="d-flex justify-content-end align-items-center d-md-block d-none mb-4">
+
+
+                        
+
+                        <div>
+
+                            <button class="btn s2 primary-btn">
+                                + Add New Staff
+                            </button>
+                        </div>
+                    </div>
+
+                     <!-- CARDS -->
+                    <div class="row gx-3 gy-2">
+
+                        <div class="col-md-3 col-6">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center gap-2">
+                                    <div class="col-3 icons-side">
+                                        <div class="  total-badge-bg sicon text-center">
+                                            <i class="bi bi-people-fill s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Total Staffs</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">20</p>
+                                        <small class="text-dark s1">All Staffs</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center gap-2">
+                                    <div class="col-3 icons-side">
+                                        <div class=" warning-badge-bg sicon text-center">
+                                            <i class="bi bi-person s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Active</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">6</p>
+                                        <small class="text-dark s1">currently active</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6 ">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center gap-2">
+                                    <div class="col-3 icons-side">
+                                        <div class="danger-badge-bg sicon text-center">
+                                            <i class="bi bi-person s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Inactive</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">3</p>
+                                        <small class="text-dark s1">Not active</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6 ">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center gap-2">
+                                    <div class="col-3 icons-side">
+                                        <div class=" success-badge-bg sicon text-center">
+                                            <i class="bi bi-person-workspace s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Roles</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">3</p>
+                                        <small class="text-dark s1">Job roles</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- BOTTOM -->
+                    <div class="row g-4 pt-4">
+
+                        <!-- Staffs -->
+                        <div class="col-md-12">
+                            <div class="card card-table h-100 p-3 d-none d-md-block">
+
+                                <div class="row gy-0 justify-content-end bg-light py-3 align-items-center ">
+                                    
+                                     <div class="col-8 col-md-6 ">
+                                        <form action="#" method="get">
+                                            <input type="search" name="searchAssets" id="searchAssets" placeholder="Search for Assets..." class="form-control s2">
+                                        </form>
+                                    </div>
+                                    
+                                    <div class="col-auto d-flex gap-5 pe-5 justify-content-end align-items-center">
+                                        <span><a href="#" class="tab-link s3"><i class="bi bi-funnel"></i> Filter</a></span>
+                                        
+                                        
+                                    </div>
+
+                                   
+                                </div>
+
+                        
+                                <div class="row py-2 table-responsive">
+                                    <table id="myTable" class="table  ">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Depatment</th>
+                                                <th scope="col">Phone</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Joined</th>
+                                                <th scope="col">Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                             <tr>
+                                               
+                                                <td><p><span class="rounded-circle p-1 text-white s1 bg-danger">FO</span> Franklin Okolo</p>
+                                                </td>
+                                                <td>
+                                                    <p class="s1">Farm Manager</p>
+                                                </td>
+                                                <td><p class="s1">Management</p></td>
+                                                <td><p class="s1">09072900602</p></td>
+                                                <td><p class="s1">franklinokolo123@gmail.com</p></td>
+                                                <td><p><span class="badge success-badge-bg">Active</span></p></td>
+                                                <td><p class="s1">2023-05-01</p></td>
+                                                <td><p><i class="bi bi-three-dots-vertical"></i></p></td>
+                                            </tr>
+
+                                             <tr>
+                                               
+                                                <td><p ><span class="rounded-circle p-1 text-white s1 bg-primary">MM</span> Moses Manger</p>
+                                                </td>
+                                                <td>
+                                                    <p>Farm Supervisor</p>
+                                                </td>
+                                                <td><p>Operation</p></td>
+                                                <td><p>09072900602</p></td>
+                                                <td><p>mosesmanga121@gmail.com</p></td>
+                                                <td><p><span class="badge success-badge-bg">Active</span></p></td>
+                                                <td><p>2023-05-01</p></td>
+                                                <td><p><i class="bi bi-three-dots-vertical"></i></p></td>
+                                            </tr>
+
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- pagination -->
+                                  <div class="d-flex flex-row justify-content-between align-item-center">
+                                    <div class="col-md-6">
+                                        <p class="s2 light-color">Showing 1 to 5 of 10 Tasks</p>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                           
+                                        <div class="row justify-content-end">
+                                            <div class="col-auto">
+                                                <ul class="pagination s2">
+                                                <li class="page-item">
+                                                <a class="page-link view-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link view-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link view-link" href="#">2</a></li>
+                                                <li class="page-item">
+                                                <a class="page-link view-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                           
+                                    </div>
+                                </div>
+                            </div>
+
+                             <!-- MOBILE STAFFS LIST -->
+                            <div class="col-12 d-md-none">
+
+                                <!-- STICKY TOP -->
+                                <div class="mobile-sticky-header">
+
+                                    <button class="btn primary-btn w-100 mb-3">
+                                       + Add New Staff
+                                    </button>
+
+                                    
+
+                                    <div class="row align-items-center g-2 px-1">
+
+                                        <div class="col">
+                                            <input type="search" class="form-control" placeholder="Search activity">
+                                        </div>
+
+                                        <div class="col-auto">
+                                            <button class="btn bg-white shadow-sm border">
+                                                <i class="bi bi-funnel"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- STAFF LIST -->
+                                <div class="d-flex flex-column gap-3 mt-3 mb-4">
+
+                                    <!-- CARD -->
+                                    <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+                                    <!-- END CARD -->
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+
+                                     <div class="activity-mobile-card">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+                                                <h6 class="mb-0 bold p-color">
+                                                   <span class="badge bg-primary text-white rounded-circle p-2 me-1">FB</span> Fabian Okolo
+                                                </h6>
+
+                                            </div>
+
+                                            <div class=" me-1">
+
+                                                    <span class="badge s1 success-badge-bg">
+                                                        Active
+                                                    </span>
+
+                                            </div>
+
+                                            <a href="#" class="view-link">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+
+                                        </div>
+
+                                        
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                </div>
+
+                 <!-- mobile sticky down nav -->
+                <div class="row justify-content-between bg-white align-items-center d-md-none fixed-bottom px-3  g-3">
+                    <div class="col-auto text-center">
+                        <a href="./index.html" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-house icon"></i>
+                            </span>
+                            <p class="p-color s1 bold">Home</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="./enterprise_list.html" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-grid icon"></i>
+                            </span>
+                            <p class="p-color s1 bolde">Enterprise</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="#" class="link">
+
+                            <span class="footernav footer-mobile-badge rounded-2 p-2 shadow-sm text-center s6">
+                                <i class="bi bi-plus "></i>
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="#" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-bar-chart icon"></i>
+                            </span>
+                            <p class="p-color s1 bold">Analytics</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="#" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-three-dots icon"></i>
+                            </span>
+                            <p class="p-color s1 bold">More</p>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- mobilemenu -->
+    <div class="offcanvas  offcanvas-start" tabindex="-1" id="mobilemenu" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">🌿 Leif</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body mobilemenu-canvas">
+            <div class="mobilemenu">
+                <div class="menu-top-logo mb-2 text-start py-3">
+
+                </div>
+
+                <div class="side-menu">
+                    <a href="#" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="#"><i class="bi bi-grid"></i> Enterprise</a>
+                    <a href="#"><i class="bi bi-check-circle"></i> Activities</a>
+                    <a href="#"><i class="bi bi-box"></i> Assets</a>
+                    <a href="#"><i class="bi bi-list-task"></i> Task</a>
+                    <a href="#"><i class="bi bi-currency-dollar"></i> Transactions</a>
+                    <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
+                    <a href="#"><i class="bi bi-people"></i> Staff</a>
+                    <a href="#"><i class="bi bi-gear"></i> Settings</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+  
+
+</body>
+
+</html>

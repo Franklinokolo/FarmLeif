@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from .models import Activity
 
-from django.shortcuts import render
-from django.http import HttpResponse
 from .forms import ActivityForm
 
 def activity_create(request):
@@ -34,6 +33,13 @@ def activity_create(request):
     
 def activity_list(request):
     activities = Activity.objects.all().order_by('-created_at')
-    return render(request, "partials/activity_list.html", {
-        "activities": activities
+    paginator = Paginator(activities, 5)
+    page_number = request.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, "activities_list.html", {
+        "activities": activities, 'page_obj' : page_obj
     })
+
+def activity_detail(request):
+    return render(request, 'activity_detail.html')

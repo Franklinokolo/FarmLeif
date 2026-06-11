@@ -11,11 +11,11 @@ class Farmer(AbstractUser):
     role = models.CharField(
         max_length=20,
         choices=[
-            ("farmer", "Farmer"),
-            ("manager", "Manager"),
+            ("farm manager", "Farm Manager"),
+            ("farm staff", "Farm Staff"),
             ("admin", "Admin"),
         ],
-        default="farmer"
+        default="farm manager"
     )
     def __str__(self):
         return self.username

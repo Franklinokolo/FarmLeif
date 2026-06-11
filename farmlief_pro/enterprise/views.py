@@ -6,6 +6,7 @@ from activities.models import Activity
 from cycles.models import Cycle
 from transactions.models import Transaction
 from .models import Enterprise, Farmer
+from tasks.models import Task
 
 from django.utils import timezone
 from datetime import timedelta
@@ -44,8 +45,19 @@ def logoutView(request):
 @login_required
 def dashboardView(request):
     user = request.user
+
+    # to know if its morning evening or night
+    current_hour = timezone.localtime(timezone.now()).hour
+    if current_hour < 12:
+        greetings = "Morning"
+    elif 12<=  current_hour < 17:
+        greetings = "Afternoon"
+
+    else:greetings = "Evening"
     enterprise = Enterprise.objects.filter(farmer=user)
     current_enterprise = enterprise.first()
+
+    tasks = Task.objects.filter(status__in= ['pending', 'overdue']).order_by('due_date')
 
     recent_activities = Activity.objects.filter(enterprise=current_enterprise).order_by('-created_at')[:5]
     cycles = Cycle.objects.filter(enterprise=current_enterprise)
@@ -56,6 +68,8 @@ def dashboardView(request):
     chart_data = get_chart_data(transactions, period)
 
     context = {
+        'greeting' : greetings,
+        'tasks':tasks,
         "chart_labels": chart_data["labels"],
         "chart_income": chart_data["income"],
         "chart_expense": chart_data["expense"],

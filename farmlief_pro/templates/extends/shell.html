@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leif Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <div class="sidebar col-lg-2" id="sidebar">
+                <div class="menu-top-logo mb-2 text-start py-3">
+                    <div class="d-flex flex-row justify-content-center align-items-center">
+                        <img src="{% static 'images/lieflogo.png' %}" class="logo" width="48px" /> 
+                    <span class="ms-2 text-white"> | FarmLief</span>
+                    </div>
+                </div>
+
+                <div class="side-menu">
+                    <a href="#" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="#"><i class="bi bi-grid"></i> Enterprise</a>
+                    <a href="{% url "activity:list" %}"><i class="bi bi-check-circle"></i> Activities</a>
+                    <a href="#"><i class="bi bi-box"></i> Assets</a>
+                    <a href="#"><i class="bi bi-list-task"></i> Task</a>
+                    <a href="#"><i class="bi bi-currency-dollar"></i> Transactions</a>
+                    <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
+                    <a href="#"><i class="bi bi-people"></i> Staff</a>
+                    <a href="#"><i class="bi bi-gear"></i> Settings</a>
+                </div>
+            </div>
+
+
+            <!-- MAIN -->
+            <div class="main  col-lg-10 ">
+
+                <!-- TOP BAR -->
+
+                <nav class="navbar topbar navbar-expand-lg navbar-light bg-light ">
+                    <div class="container-fluid px-0 ">
+                        <a class="navbar-brand s4" href="#">Dashboard</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#mobilemenu" aria-controls="navbarText" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="topbar-pane">
+                            <div class="row align-items-center g-auto">
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary switcher dropdown-toggle" type="button"
+                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Green Valley Farm
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li class="dropdown-item" href="#">Poultry Farm</li>
+                                            <li class="dropdown-item" href="#">Gaot Farm</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row d-flex align-items-center profile-pane gap-2">
+                                        <div class="profile-img col-2">
+                                            <img src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
+                                                alt="" class="rounded-pill" width="32px">
+
+                                        </div>
+                                        <div class="col-auto profile-text">
+                                            <p class="s2 bold mb-0">{{request.user.username | capfirst }}</p>
+                                            <small class="s1 ">{{request.user.role | capfirst}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+
+
+                <div class="main-content mb-5">
+
+                    {% block page_content %}{% endblock page_content %}
+
+
+                </div>
+
+
+
+
+                <!-- mobile sticky down nav -->
+                <div class="row justify-content-between bg-white align-items-center d-md-none fixed-bottom px-3  g-3">
+                    <div class="col-auto text-center">
+                        <a href="./index.html" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-house icon"></i>
+                            </span>
+                            <p class="p-color s1 bold">Home</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="./enterprise_list.html" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-grid icon"></i>
+                            </span>
+                            <p class="p-color s1 bolde">Enterprise</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="#" class="link">
+
+                            <span class="footernav footer-mobile-badge rounded-2 px-2 shadow-sm text-center s6">
+                                <i class="bi bi-plus "></i>
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="#" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-bar-chart icon"></i>
+                            </span>
+                            <p class="p-color s1 bold">Analytics</p>
+                        </a>
+
+                    </div>
+
+                    <div class="col-auto text-center">
+                        <a href="#" class="link">
+
+                            <span class="footernav p-color">
+                                <i class="bi bi-three-dots icon"></i>
+                            </span>
+                            <p class="p-color s1 bold">More</p>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- mobilemenu -->
+    <div class="offcanvas mobilemenu offcanvas-start" tabindex="-1" id="mobilemenu"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">🌿 Leif</h5>
+            <button type="button" class="btn-close text-reset text-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body mobilemenu-canvas">
+            <div class="mobilemenu">
+                <div class="menu-top-logo mb-2 text-start py-3">
+
+                </div>
+
+                <div class="side-menu">
+                    <a href="index.html" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="enterprise_list.html"><i class="bi bi-grid"></i> Enterprise</a>
+                    <a href="{% url "activity:list" %}"><i class="bi bi-check-circle"></i> Activities</a>
+                    <a href="#"><i class="bi bi-box"></i> Assets</a>
+                    <a href="task_list.html"><i class="bi bi-list-task"></i> Task</a>
+                    <a href="transactions_list.html"><i class="bi bi-currency-dollar"></i> Transactions</a>
+                    <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
+                    <a href="staff2.html"><i class="bi bi-people"></i> Staff</a>
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </div>
+
+            </div>
+        </div>
+
+       {% block dom_content %}{% endblock dom_content %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+        <script src="{% static "js/scripts.js" %}"> </script>
+
+</body>
+
+</html>
