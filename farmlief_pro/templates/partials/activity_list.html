@@ -1,17 +1,93 @@
-{% for activity in activities %}
-<a href="#" class="activity">
-    <div class=" py-2 d-flex justify-content-between activity-item">
-        <div>
-            <small>{{activity.title}}</small><br>
-            <small>{{activity.cycle.name}}</small>
-        </div>
-        <div class="text-end">
-            <small>{{activity.activity_type}}</small><br>
-            <small>{{activity.activity_date}}</small>
-        </div>
-    </div>
-</a>
+ <!-- CARD -->
+ 
+                                {% if page_obj %}
+                                    {% for activity in page_obj %}
+                                        {% if forloop.last and page_obj.has_next and not request.GET.search %}
+                                            <div class="activity-mobile-card"
+                                            hx-trigger = "revealed"
+                                            hx-get = "{% url "activity:list" %}?page={{ page_obj.next_page_number}}"
+                                            hx-target = '#result'
+                                            hx-swap = "beforeend" >
+                                        {% else %}
+                                            <div class="activity-mobile-card">
+                                        {% endif %}
 
-{% empty %}
-<p class="text-muted">No activities yet</p>
-{% endfor %}
+                                            <div class="d-flex justify-content-between align-items-start">
+
+                                                <div>
+
+                                                    <div class="d-flex align-items-center gap-2 mb-1">
+
+                                                        <div class="activity-icon success-badge-bg">
+                                                            <i class="bi bi-basket2-fill"></i>
+                                                        </div>
+
+                                                        <span class="badge success-badge-bg">
+                                                            {{activity.type}}
+                                                        </span>
+
+                                                    </div>
+
+                                                    <h6 class="mb-1 bold p-color">
+                                                        {{activity.title}}
+                                                    </h6>
+
+                                                    <small class="light-color">
+                                                        {{activity.cycle.name}}
+                                                    </small>
+
+                                                </div>
+
+                                                <a href="#" class="view-link">
+                                                    <i class="bi bi-three-dots-vertical"></i>
+                                                </a>
+
+                                            </div>
+
+                                            <div class="row mt-3">
+
+                                                <div class="col-6">
+                                                    <small class="light-color d-block">
+                                                        Quantity
+                                                    </small>
+
+                                                    <span class="s2 bold">
+                                                        {{activity.quantity}} {{activity.unit|lower}}
+                                                    </span>
+                                                </div>
+
+                                                <div class="col-6 text-end">
+                                                    <small class="light-color d-block">
+                                                        Cost
+                                                    </small>
+
+                                                    <span class="danger-color bold">
+                                                        ₦{{activity.cost}}
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+
+                                            <div class="d-flex justify-content-between align-items-center">
+
+                                                <small class="light-color">
+                                                    {{activity.activity_date}}
+                                                </small>
+
+                                                <span class="badge warning-badge-bg">
+                                                    {{activity.status}}
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    
+                                    {% endfor %}
+                                {% endif %}
+
+                           <!-- END CARD -->

@@ -24,10 +24,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("activities/", include("activities.urls")),
+    path("task/", include('tasks.urls')),
     path('cycle/', include('cycles.urls')),
     path('', include("enterprise.urls")),
     path('transactions/', include('transactions.urls')),
 ]
+
 
 # # Serve static files during development
 # if settings.DEBUG:

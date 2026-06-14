@@ -90,12 +90,12 @@
                                             {% if task.status == 'overdue' %}
                                                 <p class="text-danger task s2"><a href="#"><i class=" bi bi-circle-fill me-2"></i>
                                                     {{task.time}}-
-                                                    {{task.title}}</a>
+                                                    {{task.title | title | truncatewords:3 }}</a>
                                                 </p>
                                             {% else %}
                                                 <p class="text-warning task s2"><a href="#"><i class="bi bi-circle-fill me-2"></i>
                                                     {{task.time}}
-                                                    - {{task.title}}</a>
+                                                    - {{task.title | title | truncatewords:3}}</a>
                                                 </p>
                                             {% endif %}
                                         {% endfor %}
@@ -150,16 +150,16 @@
                                     {% for recent_activity in recent_activities  %}
 
                                          <div class="d-flex justify-content-between align-items-end border-bottom py-2">
-                                            <div>
-                                                <p class="s2 bold mb-0">{{recent_activity.title | title}}</p>
+                                            <div class="col-6">
+                                                <p class="s2 bold mb-0">{{recent_activity.title | title | truncatewords:4}}</p>
                                                 <small class="s1">Layers Chicken. {{recent_activity.cycle.title | capfirst}}</small>
                                             </div>
-                                            <div class="side">
+                                            <div class="side col-3">
 
                                                 <p class="text-danger active-price s2">₦{{recent_activity.cost}}</p>
                                             </div>
 
-                                            <div class="side">
+                                            <div class="side col-3">
                                                 <p class="s2 bold">{{recent_activity.activity_date}}</p>
 
                                             </div>

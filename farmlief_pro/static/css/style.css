@@ -349,6 +349,13 @@ input[type="checkbox"] {
   text-decoration: none;
 }
 
+
+/* filter offcanvas */
+.filter-canvas{
+  height: fit-content;
+  top:35%;
+}
+
 /* MOBILE SIDEBAR */
 @media (max-width: 991px) {
   .sidebar {

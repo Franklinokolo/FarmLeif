@@ -1,0 +1,46 @@
+ <!-- CARD -->
+                                {% if tasks %}
+                                   {% for task in tasks %}
+                                      <div class="activity-mobile-card">
+
+                                    <div class="d-flex justify-content-between align-items-start">
+
+                                        <div>
+                                            <h6 class="mb-0 bold p-color">
+                                                {{task.title | truncatewords:3}}
+                                            </h6>
+
+                                            <small class=" ">
+                                                {{task.Cycle}}
+                                            </small>
+                                            <p class="s1 mb-0 mt-1 light-color">
+                                                   {{task.due_date}}, {{task.time}}
+                                            </p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end align-items-center gap-2 mb-1 me-1">
+
+                                                
+                                                <span class="badge s1 danger-badge-bg">
+                                                    {{task.priority}}
+                                                </span>
+                                                
+                                                <span class="badge s1 danger-badge-bg">
+                                                    {{task.status}}
+                                                </span>
+
+                                        </div>
+
+                                        <a href="#" class="view-link">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </a>
+
+                                    </div>
+
+                                    
+                                    </div>
+                                   {% endfor %}
+                                {% else %}
+                                    <h2>NO Task Scheduled Yet</h2>
+                                {% endif %}   
+                                <!-- END CARD -->
