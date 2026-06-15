@@ -1,0 +1,30 @@
+ {% if tasks %}
+                                                {% for task in tasks %}
+                                                    <tr>
+                                                <th scope="row">
+                                                    <input type="checkbox" name="task1" class="form-contols">
+                                                </th>
+                                                <td><p class="s2 bold mb-0 p-color">{{task.title |title}}</p>
+                                                    <small class="s1">{{task.description}}</small>
+                                                </td>
+                                                <td>
+                                                    <p class="s2 mb-0 bold p-color">{{task.Cycle}}</p>
+                                                    <small class="s1"> Week 3</small></td>
+                                                <td><span class="badge success-badge-bg">{{task.type}}</span></td>
+                                                <td><p class="mb-0">{{task.due_date}}</p> <small><span class="danger-color">58:00 am</span> </small></td>
+                                                <td><span class="badge 
+                                                    {% if task.priority == 'high' %}danger-badge-bg
+                                                    {% elif task.priority == 'medium' %}warning-badge-bg{% else %}
+                                                    primary-badge-bg{% endif %}">{{task.priority}}</span></td>
+                                                <td><span class="badge 
+                                                    {% if task.status == 'overdue' %}danger-badge-bg 
+                                                    {% elif task.status == 'pending' %}
+                                                        warning-badge-bg
+                                                    {% else %}
+                                                        success-badge-bg
+                                                    {% endif %}">{{task.status}}</span></td>
+                                                <td><span class="badge bg-success rounded-pill py-1">OF</span> <span>Okolo Franklin</span></td>
+                                                <td><i class="bi bi-three-dots-vertical"></i></td>
+                                            </tr>
+                                                {% endfor %}
+                                            {% endif %}

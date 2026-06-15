@@ -57,7 +57,7 @@ def dashboardView(request):
     enterprise = Enterprise.objects.filter(farmer=user)
     current_enterprise = enterprise.first()
 
-    tasks = Task.objects.filter(status__in= ['pending', 'overdue']).order_by('due_date')
+    tasks = Task.objects.filter(status__in= ['pending', 'overdue']).order_by('due_date')[:5]
 
     recent_activities = Activity.objects.filter(enterprise=current_enterprise).order_by('-created_at')[:5]
     cycles = Cycle.objects.filter(enterprise=current_enterprise)

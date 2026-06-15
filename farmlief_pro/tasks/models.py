@@ -28,7 +28,7 @@ class Task(models.Model):
     status = [
         ('overdue', 'Overdue'),
         ('pending', 'Pending'),
-        ('Completed','Completed')
+        ('completed','Completed')
     ]
 
     Cycle = models.ForeignKey(Cycle, on_delete= models.CASCADE, related_name='cycle')

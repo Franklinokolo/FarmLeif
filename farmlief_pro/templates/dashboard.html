@@ -81,7 +81,7 @@
                             <div class="card h-100 card-custom p-3">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h6 class="s3 bold">Scheduled Tasks</h6>
-                                    <p class="text-end"><a href="#" class="view-link nav-link">View all</a></p>
+                                    <p class="text-end"><a href="{% url "task:list" %}" class="view-link nav-link">View all</a></p>
                                 </div>
 
                                 <div class="content gap-1 d-flex flex-column">
@@ -186,7 +186,7 @@
                             <div class="card cycle-card  p-3">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h6 class="s3 bold ">Active Cycles/Batch</h6>
-                                    <p class="text-end"><a href="#" class="nav-link view-link">View all</a></p>
+                                    <p class="text-end"><a href="{% url "cycle:list" %}" class="nav-link view-link">View all</a></p>
                                 </div>
 
                                 {% if cycles %}

@@ -41,11 +41,11 @@
                 </div>
 
                 <div class="side-menu">
-                    <a href="#" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="{% url "enterprise:dashboard" %}" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
                     <a href="#"><i class="bi bi-grid"></i> Enterprise</a>
                     <a href="{% url "activity:list" %}"><i class="bi bi-check-circle"></i> Activities</a>
                     <a href="#"><i class="bi bi-box"></i> Assets</a>
-                    <a href="#"><i class="bi bi-list-task"></i> Task</a>
+                    <a href="{% url "task:list" %}"><i class="bi bi-list-task"></i> Task</a>
                     <a href="#"><i class="bi bi-currency-dollar"></i> Transactions</a>
                     <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
                     <a href="#"><i class="bi bi-people"></i> Staff</a>
@@ -194,11 +194,11 @@
                 </div>
 
                 <div class="side-menu">
-                    <a href="index.html" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="{% url "enterprise:dashboard" %}" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
                     <a href="enterprise_list.html"><i class="bi bi-grid"></i> Enterprise</a>
                     <a href="{% url "activity:list" %}"><i class="bi bi-check-circle"></i> Activities</a>
                     <a href="#"><i class="bi bi-box"></i> Assets</a>
-                    <a href="task_list.html"><i class="bi bi-list-task"></i> Task</a>
+                    <a href="{% url "task:list" %}"><i class="bi bi-list-task"></i> Task</a>
                     <a href="transactions_list.html"><i class="bi bi-currency-dollar"></i> Transactions</a>
                     <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
                     <a href="staff2.html"><i class="bi bi-people"></i> Staff</a>

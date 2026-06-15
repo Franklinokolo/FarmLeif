@@ -1,0 +1,46 @@
+{% if cycles %}
+    {% for cycle in cycles   %}
+            <tr>
+                          <td>
+                             {% if cycle.cycle_type == 'crop' %}
+                                 <span class="s4 success-badge-bg rounded px-2 py-1 me-2"><i class="">🌱</i>
+
+                               {% else %} 
+                                <span class="s4 danger-badge-bg rounded px-2 py-1 me-2"><i class="bi bi-capsule-capsule-or-plant">🐓</i>
+
+                               {% endif %}
+                        </span>
+                          </td>
+                          <td>
+                            <p class="s2 bold mb-0 p-color">
+                              {{cycle.name}} (Day 45)
+                            </p>
+                            <small class="s1">Field A (5 Acres)</small>
+                          </td>
+                          <td>
+                            <p class="s2 mb-0 bold p-color">{{cycle.cycle_type}}</p>
+                            <small class="s1"> {% if cycle.cycle_type == 'crop' %}{{cycle.crop_type}}
+                                {% else %}{{cycle.livestock_type}}{% endif %}</small>
+                          </td>
+                          <td><p>{{cycle.enterprise}}</p></td>
+                          <td><p class="mb-0">{{cycle.start_date}}</p></td>
+                          <td><p class="mb-0">May 8, 202</p></td>
+                          <td>
+                            <p class="mb-0 s1 bolder">45%</p>
+                            <div class="progress mb-2 bg-light">
+                              <div
+                                class="progress-bar bg-success"
+                                style="width: 45%"
+                              ></div>
+                            </div>
+                          </td>
+                          <td>
+                            <span class="badge success-badge-bg">Active</span>
+                          </td>
+                          <td><span class="p-color bold">₦20,000</span></td>
+                          <td><i class="bi bi-three-dots-vertical"></i></td>
+                        </tr>
+    
+    {% endfor %}
+{% else %}
+{% endif %}

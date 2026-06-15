@@ -9,8 +9,8 @@ body {
   --faint: #9b9a9a;
   --all: #77ff00;
   --all-fain: #e7ffd1;
-  --warning: #ffcf0d;
-  --warning-faint: #fdffd1;
+  --warning: hsl(48, 100%, 51%);
+  --warning-faint: #fbfcdc;
   --danger: #ff0202;
   --danger-faint: #ffc3c3;
   --success: #02c463;

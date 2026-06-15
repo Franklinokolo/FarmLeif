@@ -1,13 +1,23 @@
  <!-- CARD -->
                                 {% if tasks %}
                                    {% for task in tasks %}
-                                      <div class="activity-mobile-card">
+                                   {% if forloop.last and tasks.has_next %}
+                                    <div class='activity-mobile-card'
+                                        hx-get="{% url 'task:list' %}?status={{current_state}}&page={{ tasks.next_page_number }}" 
+                                        hx-trigger="revealed"
+                                        hx-target = "#result"
+                                        hx-swap="beforeend">
+
+                                    {% else %}
+                                    <div class="activity-mobile-card">
+
+                                   {% endif %}
 
                                     <div class="d-flex justify-content-between align-items-start">
 
                                         <div>
                                             <h6 class="mb-0 bold p-color">
-                                                {{task.title | truncatewords:3}}
+                                                {{task.title | truncatewords:3 | title}}
                                             </h6>
 
                                             <small class=" ">
@@ -21,11 +31,16 @@
                                         <div class="d-flex justify-content-end align-items-center gap-2 mb-1 me-1">
 
                                                 
-                                                <span class="badge s1 danger-badge-bg">
+                                                <span class="badge s1 
+                                                {% if task.priority == 'high' %}danger-badge-bg
+                                                {% elif task.priority == 'medium' %}warning-badge-bg
+                                                {% else %}primary-badge-bg{% endif %}">
                                                     {{task.priority}}
                                                 </span>
                                                 
-                                                <span class="badge s1 danger-badge-bg">
+                                                <span class="badge s1  {% if task.status == 'overdue' %}danger-badge-bg
+                                                {% elif task.status == 'pending' %}warning-badge-bg
+                                                {% else %}success-badge-bg{% endif %}">
                                                     {{task.status}}
                                                 </span>
 
