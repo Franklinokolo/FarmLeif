@@ -3,17 +3,24 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Count
 from .models import Task
+from .forms import taskForm
+import time
 
 # Create your views here.
 def alltask(request):
     state = request.GET.get('status', 'all')
+    search = request.GET.get('searchTask')
     view = request.GET.get('view', 'mobile')
     page_number = request.GET.get('page', 1)
 
-    if state == 'all':
-        tasks = Task.objects.all().order_by('-created_at')
+    if search:
+        tasks = Task.objects.filter(title__icontains = search).order_by('-created_at')
     else:
-        tasks = Task.objects.filter(status = state).order_by('-created_at')
+        if state == 'all':
+        
+            tasks = Task.objects.all().order_by('-created_at')
+        else:
+            tasks = Task.objects.filter(status = state).order_by('-created_at')
     
     counts_query = Task.objects.values('status').annotate(total=Count('id'))
     status_counts = {item['status']: item['total'] for item in counts_query}
@@ -30,3 +37,10 @@ def alltask(request):
         return render(request, 'partials/tasks_list.html', context)
     
     return render(request, 'task_list.html', context)
+
+
+def TaskCreate(request):
+    form = taskForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+    return render(request, 'modals/task_create.html', {'form' : form})

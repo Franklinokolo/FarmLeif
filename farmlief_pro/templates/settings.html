@@ -1,0 +1,141 @@
+{% extends "extends/shell.html" %}
+{% block page_content %}
+
+    {% block pagetitle %}Settings{% endblock pagetitle %}Settings
+
+            <div class="row accordion accordion-flush jutify-content-center mt-5" id="accordionExample" >
+                <div class="col-lg-3">
+                    <!-- accodion one -->
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" >
+                            Profile
+                        </button>
+                    </h2>
+
+                    <!-- accorddion two -->
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Account Settings
+                        </button>
+                    </h2>
+
+                    <!-- accodion three -->
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Security Settings
+                        </button>
+                </div>
+                <div class="col-lg-9">
+                    <div >
+                        <div class="accordion-item border-0 shadow-none light-bg">
+
+                            <div id="collapseOne" class="accordion-collapse border-0 shadow-none collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body p-0  rounded-2 border-0 shadow-none">
+                                    <div class="col-12 primary-bg align-center p-2 mb-4">
+                                        <h2 class="s3 text-white bold mb-0">Profile Information</h2>
+                                    </div>
+                                    <div class="row align-items-center px-md-5 p-2 py-3">
+                                        <div class="col-lg-4 text-center">
+                                            <img src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" alt="" class="rounded-pill" width="100px">
+
+                                            <form action="#" method="post">
+                                                <div class="mb-3">
+                                                    <label for="profilepic" class="form-label file-selector ">Change Photo</label>
+                                                    <input class="form-control d-none" type="file"  id="profilepic">
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="info mb-2">
+                                                <small class="s1 p-color">Name</small>
+                                                <p class="s2 bold mb-0">Franklin Okolo</p>
+                                            </div>
+
+                                            <div class="info mb-2">
+                                                <small class="s1 p-color">Email</small>
+                                                <p class="s2 bold mb-0">franklin.okolo@example.com</p>
+                                            </div>
+
+                                            <div class="info mb-2">
+                                                <small class="s1 p-color">Phone</small>
+                                                <p class="s2 bold mb-0">+1 (123) 456-7890</p>
+                                            </div>
+
+                                            <div class="info mb-2">
+                                                <small class="s1 p-color">Role</small>
+                                                <p class="s2 bold mb-0">Farm Manager</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item light-bg">
+
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body ">
+                                    <!-- account settings content    -->
+                                    <div class="container">
+                                        <form action="#" method="post">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Full Name</label>
+                                            <input type="text" class="form-control" id="name" value="franklin.okolo">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email address</label>
+                                            <input type="email" class="form-control" id="email" value="">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Phone Number</label>
+                                            <input type="text" class="form-control" id="phone" value="+1 (123) 456-7890">
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="btn primary-btn">Save Changes</button>
+                                        </div> 
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item light-bg">
+
+                            <div id="collapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <!-- security settings content    -->
+                                    <div class="container">
+                                        <form action="#" method="post">
+                                        <div class="mb-3">
+                                            <label for="currentPassword" class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" id="currentPassword">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="newPassword" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword">
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="btn primary-btn">Change Password</button>
+                                        </div> 
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+{% endblock page_content %}

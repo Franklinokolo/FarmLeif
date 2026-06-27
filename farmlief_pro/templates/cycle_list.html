@@ -6,12 +6,7 @@
 
 
          
-            <!-- GREETIINGS  -->
-            <div class="d-flex  justify-content-end align-items-center mb-4">
-              <div>
-                <button class="btn s2 primary-btn">+ Schedule New Task</button>
-              </div>
-            </div>
+           
 
             <!-- CARDS -->
             <div class="row g-3 mb-4">
@@ -27,7 +22,7 @@
                       <div class="top">
                         <small class="s3">Total Cycle</small>
                       </div>
-                      <p class="s4 bolder mb-0">20</p>
+                      <p class="s4 bolder mb-0">{{count.total | default:"0"}}</p>
                       <small class="text-dark s1">All Time</small>
                     </div>
                   </div>
@@ -38,7 +33,7 @@
                 <div class="card card-custom p-3">
                   <div class="row align-items-center">
                     <div class="col-3 icons-side">
-                      <div class="warning-badge-bg sicon text-center">
+                      <div class="success-badge-bg sicon text-center">
                         <i class="bi bi-check-circle s5"></i>
                       </div>
                     </div>
@@ -46,7 +41,7 @@
                       <div class="top">
                         <small class="s3">Active Cycles</small>
                       </div>
-                      <p class="s4 bolder mb-0">6</p>
+                      <p class="s4 bolder mb-0">{{count.active | default:"0"}}</p>
                       <small class="text-dark s1">Currently active</small>
                     </div>
                   </div>
@@ -65,7 +60,7 @@
                       <div class="top">
                         <small class="s3">Inactive </small>
                       </div>
-                      <p class="s4 bolder mb-0">3</p>
+                      <p class="s4 bolder mb-0">{{count.pending | default:"0"}}</p>
                       <small class="text-dark s1">Inactive cycles</small>
                     </div>
                   </div>
@@ -76,7 +71,7 @@
                 <div class="card card-custom p-3">
                   <div class="row align-items-center">
                     <div class="col-3 icons-side">
-                      <div class="success-badge-bg sicon text-center">
+                      <div class="closed-badge-bg sicon text-center">
                         <i class="bi bi-check2-circle s5"></i>
                       </div>
                     </div>
@@ -84,7 +79,7 @@
                       <div class="top">
                         <small class="s3">Closed Cycles </small>
                       </div>
-                      <p class="s4 bolder mb-0">30</p>
+                      <p class="s4 bolder mb-0">{{count.completed| default:"0"}}</p>
                       <small class="text-dark s1">Completed Cycles</small>
                     </div>
                   </div>
@@ -110,26 +105,26 @@
                         ><a href="#" class="tab-link bold"
                           >Active
                           <span
-                            class="rounded-pill px-1 bg-warning text-white s1"
-                            >6</span
+                            class="rounded-pill px-1 bg-success text-white s1"
+                            >{{count.active | default:"0"}}</span
                           ></a
                         ></span
                       >
                       <span
                         ><a href="#" class="tab-link bold"
-                          >Pending
+                          >Inactive
                           <span
                             class="rounded-pill px-1 bg-danger text-white s1"
-                            >6</span
+                            >{{count.pending | default:"0"}}</span
                           ></a
                         ></span
                       >
                       <span
                         ><a href="#" class="tab-link bold"
-                          >Completed
+                          >Closed
                           <span
-                            class="rounded-pill px-1 bg-success text-white s1"
-                            >30</span
+                            class="rounded-pill px-1 bg-dark text-white s1"
+                            >{{count.completed | default:"0"}}</span
                           ></a
                         ></span
                       >
@@ -183,46 +178,51 @@
                   </div>
 
                   <!-- pagination -->
-                  <div
-                    class="d-flex flex-row justify-content-between align-item-center"
-                  >
-                    <div class="col-md-6">
-                      <p class="s2 light-color">Showing 1 to 5 of 10 Tasks</p>
-                    </div>
+                  <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="col-md-6">
+          <p class="s2 light-color">
+            Showing {{ tasks.start_index }} to {{ tasks.end_index }} of {{tasks.paginator.count }} Tasks
+          </p>
+        </div>
 
-                    <div class="col-md-6">
-                      <div class="row justify-content-end">
-                        <div class="col-auto">
-                          <ul class="pagination s2">
-                            <li class="page-item">
-                              <a
-                                class="page-link view-link"
-                                href="#"
-                                aria-label="Previous"
-                              >
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link view-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                              <a class="page-link view-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                              <a
-                                class="page-link view-link"
-                                href="#"
-                                aria-label="Next"
-                              >
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div class="col-md-6">
+          <div class="row justify-content-end">
+            <div class="col-auto">
+              <ul class="pagination s2">
+                {% if cycles.has_previous %}
+                <li class="page-item">
+                  <a
+                    class="page-link view-link"
+                    href="?page={{ cycles.previous_page_number }}&status={{ current_state }}&view=desktop"
+                    aria-label="Previous"
+                  >
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                {% endif %} {% for num in cycles.paginator.page_range %}
+                <li
+                  class="page-item {% if cycles.number == num %}active{% endif %}"
+                >
+                  <a class="page-link view-link" href="?page={{ num }}&status={{ current_state }}&view=desktop">
+                    {{ num }}
+                  </a>
+                </li>
+                {% endfor %} {% if cycles.has_next %}
+                <li class="page-item">
+                  <a
+                    class="page-link view-link"
+                    href="?page={{ cycles.next_page_number }}&status={{current_state}}&view=desktop"
+                    aria-label="Next"
+                  >
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
                 </div>
               </div>
             </div>

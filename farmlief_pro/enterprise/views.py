@@ -15,8 +15,9 @@ from transactions.services import get_monthly_metrics, get_chart_data
 # login view for farmers to login and manage their enterprise
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, login_not_required
 
+@login_not_required
 def loginView(request):
     if request.user.is_authenticated:
         return redirect('enterprise:dashboard')
@@ -103,3 +104,8 @@ def metrics_partial(request):
         "expense_change": round(data["expense_change"], 1),
         "profit_change": round(data["profit_change"], 1),
     })
+
+
+# Enterprise List
+def enterpriseList(request):
+    return render(request, 'enterprise_list.html')

@@ -17,7 +17,7 @@ def activity_create(request):
 
             return HttpResponse("""
             <script>
-              const modal = bootstrap.Modal.getInstance(document.getElementById('activitymodal'));
+              const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
               modal.hide();
 
               document.body.dispatchEvent(new Event("activityAdded"));
@@ -25,18 +25,18 @@ def activity_create(request):
             """)
 
         # If form invalid → return form WITH errors
-        return render(request, "partials/activity_form.html", {"form": form})
+        return render(request, "modals/activity_create.html", {"form": form})
 
     # GET request
     form = ActivityForm()
-    return render(request, "partials/activity_form.html", {"form": form})
+    return render(request, "modals/activity_create.html", {"form": form})
 
     
 def activity_list(request):
     activities = Activity.objects.all().order_by('-created_at')
     total_activity = len(activities)
     pending  = activities.filter(activity_type = 'pending')
-    paginator = Paginator(activities, 2)
+    paginator = Paginator(activities, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     

@@ -1,7 +1,14 @@
 body {
-  background-color: rgba(7, 62, 42, 0.05);
+  background-color: rgba(151, 249, 189, 0.356);
   font-family: "Poppins", sans-serif;
 }
+
+.htmx-request.htmx-indicator,
+.htmx-request .htmx-indicator {
+    display: flex !important;
+} 
+/* Your styling cleaned up */
+
 
 :root {
   --primary: #0f3d2e;
@@ -21,6 +28,17 @@ body {
   --white: #fff;
 }
 
+/* modal */
+    .modal-dialog{
+      max-width: 60%;
+    }
+
+    .modal-dialog .modal-body
+    label{
+      color: var(--faint);
+      font-size: 12px;
+    }
+
 .badge {
   font-weight: normal;
 }
@@ -31,6 +49,8 @@ body {
 .danger-color {
   color: var(--danger);
 }
+
+
 
 .success-color {
   color: var(--success);
@@ -50,10 +70,22 @@ body {
   background-color: var(--white);
 }
 
+.badge-circle{
+  border-radius: 50%;
+ 
+}
+
 .total-badge-bg {
   background-color: var(--all-fain);
   color: var(--all);
 }
+
+.closed-badge-bg{
+  background-color:#00000075 ;
+  color: var(--black);
+}
+
+
 
 .primary-badge-bg {
   background-color: var(--faint-blue);
@@ -232,6 +264,7 @@ tbody tr td {
 .main-content {
   padding: 20px 50px;
   height: inherit;
+  
 }
 
 .topbar {

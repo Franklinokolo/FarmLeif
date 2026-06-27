@@ -1,106 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "extends/shell.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leif Dashboard</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="./style.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head>
-
-<body>
-
-    <div class="container-fluid">
-        <div class="row">
-            <!-- SIDEBAR -->
-            <div class="sidebar col-lg-2" id="sidebar">
-                <div class="menu-top-logo mb-2 text-start py-3">
-                    <h4 class="logo text-white">🌿 Leif</h4>
-                </div>
-
-                <div class="side-menu">
-                      <a href="index.html" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                    <a href="enterprise_list.html"><i class="bi bi-grid"></i> Enterprise</a>
-                    <a href="activities_list.html"><i class="bi bi-check-circle"></i> Activities</a>
-                    <a href="assets.html"><i class="bi bi-box"></i> Assets</a>
-                    <a href="task_list.html"><i class="bi bi-list-task"></i> Task</a>
-                    <a href="transactions_list.html"><i class="bi bi-currency-dollar"></i> Transactions</a>
-                    <a href="analytics.html"><i class="bi bi-bar-chart"></i> Analytics</a>
-                    <a href="staff2.html"><i class="bi bi-people"></i> Staff</a>
-                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
-                </div>
-            </div>
-
-
-            <!-- MAIN -->
-            <div class="main  col-lg-10 ">
-
-                <!-- TOP BAR -->
-
-                <nav class="navbar topbar navbar-expand-lg navbar-light bg-light ">
-                    <div class="container-fluid px-0 ">
-                        <a class="navbar-brand s4 bold" href="#">Cycle Detail</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#mobilemenu" aria-controls="navbarText" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="topbar-pane">
-                            <div class="row align-items-center g-auto">
-                                <div class="col-auto">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary switcher dropdown-toggle" type="button"
-                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Green Valley Farm
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li class="dropdown-item" href="#">Poultry Farm</li>
-                                            <li class="dropdown-item" href="#">Gaot Farm</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="row d-flex align-items-center profile-pane gap-2">
-                                        <div class="profile-img col-2">
-                                            <img src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
-                                                alt="" class="rounded-pill" width="32px">
-
-                                        </div>
-                                        <div class="col-auto profile-text">
-                                            <p class="s2 bold mb-0">Franklin Okolo</p>
-                                            <small class="s1">Farm Manager</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-
-
-                <div class="main-content mb-5">
-                    <div class="mt-3 d-flex gap-3 d-none d-md-block justify-content-end mb-4">
-                        <button class="btn secondary-btn s1">
+{% block page_content %}
+                    <div class="mt-2 d-none d-md-block text-end mb-5">
+                        <button class="btn secondary-btn s1 me-2">
                             <span><i class="bi bi-pen me-1"></i></span>Edit cycle
                         </button>
-                        <button class="btn secondary-btn s1 ">
+                        <button class="btn secondary-btn s1 me-2 ">
                             <span><i class="bi bi-download me-1"></i></span> Download report
                         </button>
                         <button class="btn primary-btn s1 dropdown-toggle" type="button" id="dropdownActivities"
@@ -138,7 +43,7 @@
                                             </div>
                                             <div class="light-color s2">
                                                 <p class=" mb-0 bold">Enterprise</p>
-                                                <small>Green Valley Farm</small>
+                                                <small>{{cycle.enterprise}}</small>
                                             </div>
                                         </div>
 
@@ -148,7 +53,7 @@
                                             </div>
                                             <div class="light-color s2">
                                                 <p class=" mb-0 bold">Crop Type</p>
-                                                <small>Crop(Maize)</small>
+                                                <small>{{cycle.cycle_type}}(Maize)</small>
                                             </div>
                                         </div>
 
@@ -182,7 +87,7 @@
 
                                             <div class="col-6 col-lg-12 text-end text-lg-start ">
                                                 <span class="s1 bold"><span class="me-2"><i
-                                                        class="bi bi-calendar"></i></span>March 1, 2025 </span>
+                                                        class="bi bi-calendar"></i></span>{{cycle.start_date}}</span>
                                             </div>
                                            </div>
                                         </div>
@@ -259,14 +164,16 @@
                                         </thead>
                                         <tbody class="s1">
 
-                                            <tr>
+                                           {% for activity in activities %}
+                                           
+                                             <tr>
                                                 <td><span class="badge  danger-badge-bg py-2"><i class="bi bi-egg"></i></span></td>
                                                 <td>
-                                                    <p class="s1 bold mb-0 p-color"> Feed the Broilers</p>
-                                                    <small class="s1">provide morning food</small>
+                                                    <p class="s1 bold mb-0 p-color"> {{activity.title}}</p>
+                                                    <small class="s1">{{activity.description}}</small>
                                                 </td> 
 
-                                                <td><span class="badge success-badge-bg">Feeding</span></td>
+                                                <td><span class="badge success-badge-bg">{{activity.type}}</span></td>
                                                 <td>May 8, 2025</td>
                                                 <td><span>5kg</span></td>
                                                 <td><span>₦20000</span></td>
@@ -274,37 +181,8 @@
                                                 <td><i class="bi bi-three-dots-vertical"></i></td>
                                             </tr>
 
-                                            <tr>
-                                                <td><span class="badge success-badge-bg py-2"><i class="bi bi-egg"></i></span></td>
-
-                                                <td>
-                                                    <p class="s1 bold mb-0 p-color">Feed the Broilers</p>
-                                                    <small class="s1">provide morning food</small>
-                                                </td>
-
-                                                <td><span class="badge success-badge-bg">Feeding</span></td>
-                                                <td>May 8, 2025</td>
-                                                <td><span>5kg</span></td>
-                                                <td><span>₦20000</span></td>
-                                                <td><span>Franklin</span></td>
-                                                <td><i class="bi bi-three-dots-vertical"></i></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td><span class="badge warning-badge-bg py-2"><i class="bi bi-egg"></i></span></td>
-
-                                                <td>
-                                                    <p class="s1 bold mb-0 p-color">Feed the Broilers</p>
-                                                    <small class="s1">provide morning food</small>
-                                                </td>
-
-                                                <td><span class="badge success-badge-bg">Feeding</span></td>
-                                                <td>May 8, 2025</td>
-                                                <td><span>5kg</span></td>
-                                                <td class="s1"><span>₦20000</span></td>
-                                                <td><span>Franklin</span></td>
-                                                <td><i class="bi bi-three-dots-vertical"></i></td>
-                                            </tr>
+                                           
+                                           {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -616,110 +494,6 @@
                 </div>
 
 
+{% endblock page_content %}
 
-
-                <!-- mobile sticky down nav -->
-                <div class="row justify-content-between bg-white align-items-center d-md-none fixed-bottom px-3 pt-1  ">
-                    <div class="col-auto text-center">
-                        <a href="./index.html" class="link">
-
-                            <span class="footernav p-color">
-                                <i class="bi bi-house icon"></i>
-                            </span>
-                            <p class="p-color s1 bold">Home</p>
-                        </a>
-
-                    </div>
-
-                    <div class="col-auto text-center">
-                        <a href="./enterprise_list.html" class="link">
-
-                            <span class="footernav p-color">
-                                <i class="bi bi-grid icon"></i>
-                            </span>
-                            <p class="p-color s1 bolde">Enterprise</p>
-                        </a>
-
-                    </div>
-
-                    <div class="col-auto text-center">
-                        <a href="#" class="link">
-
-                            <span class="footernav footer-mobile-badge rounded-2 px-2 py-1 shadow-sm text-center s6">
-                                <i class="bi bi-plus "></i>
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                    <div class="col-auto text-center">
-                        <a href="analytics.html" class="link">
-
-                            <span class="footernav p-color">
-                                <i class="bi bi-bar-chart icon"></i>
-                            </span>
-                            <p class="p-color s1 bold">Analytics</p>
-                        </a>
-
-                    </div>
-
-                    <div class="col-auto text-center">
-                        <a href="#" class="link">
-
-                            <span class="footernav p-color">
-                                <i class="bi bi-three-dots icon"></i>
-                            </span>
-                            <p class="p-color s1 bold">More</p>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-    <!-- mobilemenu -->
-    <div class="offcanvas mobilemenu  offcanvas-start" tabindex="-1" id="mobilemenu"
-        aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">🌿 Leif</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body mobilemenu-canvas">
-            <div class="mobilemenu">
-                <div class="menu-top-logo mb-2 text-start py-3">
-
-                </div>
-
-                <div class="side-menu">
-                    <a href="index.html" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                    <a href="enterprise_list.html"><i class="bi bi-grid"></i> Enterprise</a>
-                    <a href="activities_list.html"><i class="bi bi-check-circle"></i> Activities</a>
-                    <a href="assets.html"><i class="bi bi-box"></i> Assets</a>
-                    <a href="task_list.html"><i class="bi bi-list-task"></i> Task</a>
-                    <a href="transactions_list.html"><i class="bi bi-currency-dollar"></i> Transactions</a>
-                    <a href="analytics.html"><i class="bi bi-bar-chart"></i> Analytics</a>
-                    <a href="staff2.html"><i class="bi bi-people"></i> Staff</a>
-                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
-                </div>
-
-            </div>
-        </div>
-
-
-        <script src="./scripts.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+              

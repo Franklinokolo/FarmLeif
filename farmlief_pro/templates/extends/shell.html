@@ -42,14 +42,14 @@
 
                 <div class="side-menu">
                     <a href="{% url "enterprise:dashboard" %}" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                    <a href="#"><i class="bi bi-grid"></i> Enterprise</a>
+                    <a href="{% url "enterprise:list" %}"><i class="bi bi-grid"></i> Enterprise</a>
                     <a href="{% url "activity:list" %}"><i class="bi bi-check-circle"></i> Activities</a>
-                    <a href="#"><i class="bi bi-box"></i> Assets</a>
+                    <a href="{% url "assets:list" %}"><i class="bi bi-box"></i> Assets</a>
                     <a href="{% url "task:list" %}"><i class="bi bi-list-task"></i> Task</a>
-                    <a href="#"><i class="bi bi-currency-dollar"></i> Transactions</a>
+                    <a href="{% url "transactions:list" %}"><i class="bi bi-currency-dollar"></i> Transactions</a>
                     <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
-                    <a href="#"><i class="bi bi-people"></i> Staff</a>
-                    <a href="#"><i class="bi bi-gear"></i> Settings</a>
+                    <a href="{% url "staff:list" %}"><i class="bi bi-people"></i> Staff</a>
+                    <a href="{% url "staff:setting" %}"><i class="bi bi-gear"></i> Settings</a>
                 </div>
             </div>
 
@@ -59,9 +59,9 @@
 
                 <!-- TOP BAR -->
 
-                <nav class="navbar topbar navbar-expand-lg navbar-light bg-light ">
+                <nav class="navbar topbar sticky-top navbar-expand-lg navbar-light bg-light ">
                     <div class="container-fluid px-0 ">
-                        <a class="navbar-brand s4" href="#">Dashboard</a>
+                        <a class="navbar-brand s4" href="#">{% block pagetitle %}Dashboard{% endblock pagetitle %}</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#mobilemenu" aria-controls="navbarText" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -82,15 +82,15 @@
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="row d-flex align-items-center profile-pane gap-2">
+                                    <div class="row d-flex align-item-center profile-pane gap-2">
                                         <div class="profile-img col-2">
                                             <img src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small_2x/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
                                                 alt="" class="rounded-pill" width="32px">
 
                                         </div>
                                         <div class="col-auto profile-text">
-                                            <p class="s2 bold mb-0">{{request.user.username | capfirst }}</p>
-                                            <small class="s1 ">{{request.user.role | capfirst}}</small>
+                                            <p class="s2 bold my-0">{{request.user.username | capfirst }}</p>
+                                            <p class="s1 my-0">{{request.user.role | capfirst}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,10 +102,37 @@
 
 
 
-                <div class="main-content mb-5">
+                    <div class="main-content mb-5">
 
+                        <div class="spin bg-danger d-block htmx-indicator" id="loader" >
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
                     {% block page_content %}{% endblock page_content %}
 
+
+                <!-- Modal -->
+<div
+  class="modal fade"
+  id="modalform"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="modalformLabel"
+  aria-hidden="true"
+
+ 
+
+>
+  <div class="modal-dialog ">
+    <div class="modal-content" id='modal-content-target'>
+      
+      
+      
+    </div>
+  </div>
+</div>
 
                 </div>
 
@@ -195,20 +222,22 @@
 
                 <div class="side-menu">
                     <a href="{% url "enterprise:dashboard" %}" class="active"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                    <a href="enterprise_list.html"><i class="bi bi-grid"></i> Enterprise</a>
+                    <a href="{% url "enterprise:list" %}"><i class="bi bi-grid"></i> Enterprise</a>
                     <a href="{% url "activity:list" %}"><i class="bi bi-check-circle"></i> Activities</a>
-                    <a href="#"><i class="bi bi-box"></i> Assets</a>
+                    <a href="{% url "assets:list" %}"><i class="bi bi-box"></i> Assets</a>
                     <a href="{% url "task:list" %}"><i class="bi bi-list-task"></i> Task</a>
-                    <a href="transactions_list.html"><i class="bi bi-currency-dollar"></i> Transactions</a>
+                    <a href="{% url "transactions:list" %}"><i class="bi bi-currency-dollar"></i> Transactions</a>
                     <a href="#"><i class="bi bi-bar-chart"></i> Analytics</a>
-                    <a href="staff2.html"><i class="bi bi-people"></i> Staff</a>
-                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                    <a href="{% url "staff:list" %}"><i class="bi bi-people"></i> Staff</a>
+                    <a href="{% url "staff:setting" %}"><i class="bi bi-gear"></i> Settings</a>
                 </div>
 
             </div>
         </div>
 
 
+        
+      
 
 
 

@@ -1,1 +1,185 @@
-<h2> heelo assets </h2>
+{% extends "extends/shell.html" %}
+
+{% load static %}
+
+{% block page_content %}
+ 
+
+                    <!-- CARDS -->
+                    {% comment %} <div class="row g-3 mb-4">
+
+                        <div class="col-md-3">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center">
+                                    <div class="col-3 icons-side">
+                                        <div class="  total-badge-bg sicon text-center">
+                                            <i class="bi bi-grid s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Total Enterpise</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">9</p>
+                                        <small class="text-dark s1">All Time</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center">
+                                    <div class="col-3 icons-side">
+                                        <div class=" warning-badge-bg sicon text-center">
+                                            <i class="bi bi-ui-checks-grid s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Active Enterprise</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">6</p>
+                                        <small class="text-dark s1">Currently active</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center">
+                                    <div class="col-3 icons-side">
+                                        <div class="primary-badge-bg sicon text-center">
+                                            <i class="bi bi-people-fill s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Total Staffs</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">18</p>
+                                        <small class="text-dark s1">All farmers</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card card-custom p-3 ">
+                                <div class="row align-items-center">
+                                    <div class="col-3 icons-side">
+                                        <div class=" primary-badge-bg sicon text-center">
+                                            <i class="bi bi-arrow-clockwise s5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="top ">
+                                            <small class="s3">Total Cycles</small>
+                                        </div>
+                                        <p class=" s4 bolder mb-0">12</p>
+                                        <small class="text-dark s1">Running cycles</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div> {% endcomment %}
+
+
+                    <!-- BOTTOM -->
+                    <div class="row g-3">
+
+                        <!-- TASKS -->
+                        <div class="col-md-12">
+                            <div class="card card-table px-4 h-100 p-3">
+                                 <div class="row gy-0 mb-3   py-3 justify-contents-space-between align-items-center ">
+                                    
+                                <div class="col-10 col-md-8 ">
+                                    <form action="#" method="get">
+                                        <input type="search" name="searchAssets" id="searchAssets" placeholder="Search for Assets..." class="form-control s2" style="width='100%',">
+                                    </form>
+                                    </div>
+                                                                
+                                    <div class="col-4 text-end">
+                                    <button class='btn primary-btn s3' data-bs-toggle="modal" data-bs-target="#modalform"> <span class='badge badge-circle bg-white p-color s2 me-2 p-1'><i class="bi bi-plus m-auto"></i> </span> Add New Assets</button>
+                                    </div>
+                                            
+                                 </div>
+                                <div class="row table-responsive">
+                                    <table id="myTable" class="table ">
+                                        <thead class="">
+                                            <tr>
+                                                
+                                                <th scope="col">Assets Name</th>
+                                                <th scope="col">Category </th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Purchase Date </th>
+                                                <th scope="col">Value(₦) </th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span class="s4 success-badge-bg rounded px-1 me-2"><i class="fa fa-seedling"></i></span>
+                                                    <span class="">Weighing Scale</span>
+                                                </td>
+                                                <td>Equipment</td>
+                                                <td><span class="">2</span></td>
+                                                <td><span class="">Jan 10, 2026</span></td>
+                                                <td><span class="">200000</span></td>
+                                                <td><span class="badge success-badge-bg">active</span></td>
+                                                <td><a href="#" class="view-link"><i class="bi bi-three-dots-vertical"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                       
+                                    </table>
+
+                                           
+                                </div>
+
+                                <!-- pagination -->
+                                <div class="d-flex flex-row justify-content-between align-item-center">
+                                    <div class="col-md-6">
+                                        <p class="s2 light-color">Showing 1 to 5 of 10 Enterprise</p>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                           
+                                        <div class="row justify-content-end">
+                                            <div class="col-auto">
+                                                <ul class="pagination s2">
+                                                <li class="page-item">
+                                                <a class="page-link view-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link view-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link view-link" href="#">2</a></li>
+                                                <li class="page-item">
+                                                <a class="page-link view-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                           
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+               
+
+{% endblock page_content %}

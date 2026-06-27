@@ -5,6 +5,6 @@ app_name = 'cycle'
 
 urlpatterns = [
     path('list/', views.cycle_list, name='list' ),
-    path('detail/', views.cycle_list, name='detail' ),
+    path('detail/<int:cycle>', views.cycle_detail, name='detail' ),
 
 ]

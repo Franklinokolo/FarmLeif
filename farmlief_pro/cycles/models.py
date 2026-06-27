@@ -20,7 +20,7 @@ class Cycle(models.Model):
     cycle_type = models.CharField(max_length=20, choices=CYCLE_TYPE)
 
     start_date = models.DateField()
-    expected_duration = models.IntegerField(null=True, blank=True)  # days
+    end_date = models.DateField()  
 
     status = models.CharField(max_length=20, choices=STATUS, default="active")
 

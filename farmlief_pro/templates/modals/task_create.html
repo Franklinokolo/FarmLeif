@@ -1,0 +1,93 @@
+<div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Schedule Task</h5>
+        <button
+          type="button"
+          class="btn-close danger-color"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+</div>
+
+<div class="modal-body">
+
+  <div class='container-fluid'  >
+    <form 
+  hx-post="{% url 'task:create' %}" 
+  hx-target="#modal-content-target"
+  hx-swap="innerHTML"
+>
+
+  {% csrf_token %}
+
+  <div class="row">
+    <!-- TITLE -->
+  <div class="mb-3 col-4">
+    <label class="form-label">Title <span class="danger-color">*</span></label>
+    {{ form.title }}
+    <div class="text-danger small">{{ form.title.errors }}</div>
+  </div>
+
+  <!-- Cyle -->
+  <div class="mb-3 col-4">
+    <label class="form-label">cycle</label>
+    {{ form.Cycle }}
+    <div class="text-danger small">{{ form.Cycle.errors }}</div>
+  </div>
+
+  <!-- Type -->
+  <div class="mb-3 col-4">
+    <label class="form-label">type <span class="danger-color">*</span></label>
+    {{ form.type }}
+    <div class="text-danger small">{{ form.type.errors }}</div>
+  </div>
+
+  </div>
+
+
+<div class='row'>
+
+   <!-- UNIT -->
+  <div class="mb-3 col-4">
+    <label class="form-label">Priority</label>
+    {{ form.priority }}
+  </div>
+
+  
+
+  <!-- DATE -->
+  <div class="mb-3 col-4">
+    <label class="form-label">Due Date <span class="danger-color">*</span></label>
+    {{ form.due_date }}
+    <div class="text-danger small">{{ form.due_date.errors }}</div>
+  </div>
+
+  <!-- Time -->
+  <div class="mb-3 col-4">
+    <label class="form-label">Time</label>
+    {{ form.time }}
+    <div class="text-danger small">{{ form.time.errors }}</div>
+  </div>
+
+ </div>
+
+  <!-- DESCRIPTION -->
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    {{ form.description }}
+  </div>
+
+  <!-- ACTION -->
+  <div class="d-flex justify-content-end gap-2">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+      Cancel
+    </button>
+
+    <button class="btn primary-btn" type="submit">
+      Save Activity
+    </button>
+  </div>
+
+</form>
+  </div>
+
+</div>

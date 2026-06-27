@@ -4,6 +4,12 @@ from django.http import HttpResponse
 from .forms import TransactionForm
 from enterprise.models import Enterprise
 
+
+def transactions_view(request):
+    return render(request, "transactions_list.html")
+
+
+
 @login_required
 def create_transaction(request):
     enterprise = Enterprise.objects.filter(farmer=request.user).first()

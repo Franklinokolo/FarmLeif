@@ -28,6 +28,8 @@ urlpatterns = [
     path('cycle/', include('cycles.urls')),
     path('', include("enterprise.urls")),
     path('transactions/', include('transactions.urls')),
+    path('staff/', include('staff.urls')),
+    path('assets/', include('assets.urls')),
 ]
 
 
