@@ -5,6 +5,7 @@ from . models import Cycle
 class cycleForm(forms.ModelForm):
 
     class Meta:
+        model = Cycle
         fields = [
             'name',
             'cycle_type',
@@ -23,9 +24,9 @@ class cycleForm(forms.ModelForm):
             'cycle_type' : forms.Select(attrs={'class' : 'form-select'}),
             'start_date' : forms.DateInput(attrs={'class' : 'form-control', 'type' : 'date'}, format='%Y-%M-%d'),
             'end_date' : forms.DateInput(attrs={'class' : 'form-control', 'type' : 'date'}, format='%Y-%M-%d'),
-            'crop_type' : forms.Select(attrs={'class' : 'form-select'}),
-            'season' : forms.Select(attrs={'class' : 'form-select'}),
-            'livestock_type' : forms.Select(attrs={'class' : 'form-select'}),
-            'breed' : forms.TextInput(attrs={'class' : 'form-select'}),
-            'initial_count' : forms.NumberInput(attrs={'class' : 'form-select'}),
+            'crop_type' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'eg vegetable, corn, tomatoe'}),
+            'season' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'eg dry season'}),
+            'livestock_type' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'eg poultry, goat, piggery, sheep'}),
+            'breed' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder': 'eg layers, broilers, cockerel'}),
+            'initial_count' : forms.NumberInput(attrs={'class' : 'form-control'}),
         }

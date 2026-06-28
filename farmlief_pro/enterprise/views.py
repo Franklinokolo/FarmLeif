@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.db.models import Sum
 
 # Create your views here.
@@ -7,6 +8,7 @@ from cycles.models import Cycle
 from transactions.models import Transaction
 from .models import Enterprise, Farmer
 from tasks.models import Task
+from .forms import EnterpriseForm
 
 from django.utils import timezone
 from datetime import timedelta
@@ -109,3 +111,19 @@ def metrics_partial(request):
 # Enterprise List
 def enterpriseList(request):
     return render(request, 'enterprise_list.html')
+
+# Enterprise Create
+def enterpiseCreate(request):
+    form = EnterpriseForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        
+        return HttpResponse("""
+            <script>
+              const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
+              modal.hide();
+
+              document.body.dispatchEvent(new Event("activityAdded"));
+            </script>
+            """)
+    return render(request, 'modals/enterprise_create.html', {'form' : form})

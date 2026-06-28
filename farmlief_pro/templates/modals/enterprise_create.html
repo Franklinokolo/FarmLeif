@@ -1,0 +1,74 @@
+<div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add New Activity</h5>
+        <button
+          type="button"
+          class="btn-close danger-color"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+</div>
+
+<div class="modal-body">
+
+  <div class='container-fluid'  >
+    <form 
+  hx-post="{% url 'enterprise:create' %}" 
+  hx-target="#modal-content-target"
+  hx-swap="innerHTML"
+>
+
+  {% csrf_token %}
+
+  <div class="row">
+    <!-- TITLE -->
+  <div class="mb-3 col-6">
+    <label class="form-label">Title <span class="danger-color">*</span></label>
+    {{ form.name }}
+    <div class="text-danger small">{{ form.name.errors }}</div>
+  </div>
+
+  <!-- CYCLE -->
+  <div class="mb-3 col-6">
+    <label class="form-label">Farmer <span class="danger-color">*</span></label>
+    {{ form.farmer }}
+    <div class="text-danger small">{{ form.farmer.errors }}</div>
+  </div>
+
+  </div>
+
+
+ <div class="row">
+
+   <!-- TYPE -->
+  <div class="mb-3 col-6">
+    <label class="form-label">Farm Type <span class="danger-color">*</span></label>
+    {{ form.farm_type }}
+    <div class="text-danger small">{{ form.farm_type.errors }}</div>
+  </div>
+
+  <!-- QUANTITY -->
+  <div class="mb-3 col-6">
+    <label class="form-label">Location</label>
+    {{ form.location }}
+    <div class="text-danger small">{{ form.location.errors }}</div>
+  </div>
+
+ </div>
+
+ 
+
+  <!-- ACTION -->
+  <div class="d-flex justify-content-end gap-2">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+      Cancel
+    </button>
+
+    <button class="btn primary-btn" type="submit">
+      Save Activity
+    </button>
+  </div>
+
+</form>
+  </div>
+
+</div>

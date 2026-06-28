@@ -10,6 +10,7 @@ urlpatterns = [
     path('metrics/', views.metrics_partial, name='metrics_partial'),
 
     # enterprise url
-    path('enterprises/', views.enterpriseList, name='list')
+    path('enterprises/', views.enterpriseList, name='list'),
+    path('create/', views.enterpiseCreate, name='create')
   
 ]

@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Count
 
 from .models import Cycle
 from activities.models import Activity
+from .forms import cycleForm
 # Create your views here.
 
 def cycle_list(request):
@@ -33,3 +35,19 @@ def cycle_detail(request, cycle):
         'activities' : activities
     }
     return render(request, 'cycle_detail.html', context)
+
+
+def cycleCreate(request):
+    form =  cycleForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponse("""
+            <script>
+              const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
+              modal.hide();
+
+              document.body.dispatchEvent(new Event("activityAdded"));
+            </script>
+            """)
+
+    return render(request, 'modalS/cycle_create.html', {'form': form})

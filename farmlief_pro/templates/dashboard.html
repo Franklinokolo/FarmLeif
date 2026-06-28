@@ -17,7 +17,7 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownActivities">
                                 <li class="dropdown-item" hx-target='#modal-content-target' hx-get="{% url "activity:create" %}" data-bs-toggle="modal" data-bs-target="#modalform">New Activity</li>
-                                <li class="dropdown-item" href="#">New Cycle / Batch</li>
+                                <li class="dropdown-item" hx-target='#modal-content-target' hx-get="{% url "cycle:create" %}" data-bs-toggle="modal" data-bs-target="#modalform">New Cycle / Batch</li>
                                 <li class="dropdown-item" href="#">Record Sales</li>
                             </ul>
                             <button class="btn s2 primary-btn"  hx-target='#modal-content-target' hx-get="{% url "task:create" %}" data-bs-toggle="modal" data-bs-target="#modalform">
