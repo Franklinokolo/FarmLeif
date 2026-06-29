@@ -8,6 +8,7 @@ class cycleForm(forms.ModelForm):
         model = Cycle
         fields = [
             'name',
+            'enterprise',
             'cycle_type',
             'start_date',
             'end_date',
@@ -22,6 +23,7 @@ class cycleForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={ 'class' : 'form-control'}),
             'cycle_type' : forms.Select(attrs={'class' : 'form-select'}),
+            'enterprise' : forms.Select(attrs={'class' : 'form-select'}),
             'start_date' : forms.DateInput(attrs={'class' : 'form-control', 'type' : 'date'}, format='%Y-%M-%d'),
             'end_date' : forms.DateInput(attrs={'class' : 'form-control', 'type' : 'date'}, format='%Y-%M-%d'),
             'crop_type' : forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'eg vegetable, corn, tomatoe'}),

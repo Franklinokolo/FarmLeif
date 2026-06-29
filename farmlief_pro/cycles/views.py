@@ -38,16 +38,22 @@ def cycle_detail(request, cycle):
 
 
 def cycleCreate(request):
-    form =  cycleForm(request.POST)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return HttpResponse("""
-            <script>
-              const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
-              modal.hide();
+   
+    if request.method == 'POST':
+        form =  cycleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("""
+                <script>
+                const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
+                modal.hide();
 
-              document.body.dispatchEvent(new Event("activityAdded"));
-            </script>
-            """)
-
-    return render(request, 'modalS/cycle_create.html', {'form': form})
+                document.body.dispatchEvent(new Event("activityAdded"));
+                </script>
+                """)
+        else:
+            print(form.errors)
+    else:
+        form = cycleForm()
+    
+    return render(request, 'modals/cycle_create.html', {'form': form})

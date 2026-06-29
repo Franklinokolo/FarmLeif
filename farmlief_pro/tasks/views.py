@@ -40,7 +40,10 @@ def alltask(request):
 
 
 def TaskCreate(request):
-    form = taskForm(request.POST)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
+    if request.method == 'POST':
+        form = taskForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = taskForm()
     return render(request, 'modals/task_create.html', {'form' : form})

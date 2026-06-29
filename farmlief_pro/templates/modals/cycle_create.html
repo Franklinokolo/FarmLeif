@@ -9,19 +9,19 @@
       {% csrf_token %}
 
       <!-- TOGGLE SWITCH FOR TYPE -->
-      <div class="row mb-4 bg-light p-3 rounded border">
-        <div class="col-12 d-flex align-items-center justify-content-center gap-3">
-          <span class="fw-bold text-success">🌱 Crop</span>
+      <div class="row mb-3 p-0">
+        <div class="col-12 d-flex align-items-center  gap-3">
+          <span class="text-success">🌱 Crop</span>
           <div class="form-check form-switch form-switch-xl m-0">
-            <input class="form-check-input" type="checkbox" id="cycleTypeToggle" style="cursor: pointer; width: 3em; height: 1.5em;">
+            <input class="form-check-input" type="checkbox" id="cycleTypeToggle" style="cursor: pointer; width: 3em; height: 1em;">
           </div>
-          <span class="fw-bold text-primary">🐄 Livestock</span>
+          <span class="text-primary">🐄 Livestock</span>
         </div>
       </div>
 
       <!-- ROW 1: General Info -->
       <div class="row">
-        <div class="mb-3 col-md-8">
+        <div class="mb-3 col-md-4">
           <label class="form-label">Cycle Name <span class="text-danger">*</span></label>
           {{ form.name }}
           <div class="text-danger small">{{ form.name.errors }}</div>
@@ -31,16 +31,21 @@
           {{ form.season }}
           <div class="text-danger small">{{ form.season.errors }}</div>
         </div>
+         <div class="mb-3 col-md-4">
+          <label class="form-label">Enterprise</label>
+          {{ form.enterprise }}
+          <div class="text-danger small">{{ form.enterprise.errors }}</div>
+        </div>
       </div>
 
       <!-- ROW 2: Dates -->
       <div class="row">
-        <div class="mb-3 col-md-6">
+        <div class=" col-md-6">
           <label class="form-label">Start Date <span class="text-danger">*</span></label>
           {{ form.start_date }}
           <div class="text-danger small">{{ form.start_date.errors }}</div>
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="col-md-6">
           <label class="form-label">End Date <span class="text-danger">*</span></label>
           {{ form.end_date }}
           <div class="text-danger small">{{ form.end_date.errors }}</div>
@@ -50,7 +55,7 @@
       <!-- SECTION: Crop Details (Visible by default) -->
       <div id="crop-section" class="row border-top pt-3 mt-2">
         <div class="mb-3 col-md-12">
-          <label class="form-label text-success fw-bold">Crop Type</label>
+          <label class="form-label text-success ">Crop Type</label>
           {{ form.crop_type }}
           <div class="text-danger small">{{ form.crop_type.errors }}</div>
         </div>
@@ -59,17 +64,17 @@
       <!-- SECTION: Livestock Details (Hidden by default) -->
       <div id="livestock-section" class="row border-top pt-3 mt-2 d-none">
         <div class="mb-3 col-md-4">
-          <label class="form-label text-primary fw-bold">Livestock Type</label>
+          <label class="form-label text-primary ">Livestock Type</label>
           {{ form.livestock_type }}
           <div class="text-danger small">{{ form.livestock_type.errors }}</div>
         </div>
         <div class="mb-3 col-md-4">
-          <label class="form-label text-primary fw-bold">Breed</label>
+          <label class="form-label text-primary ">Breed</label>
           {{ form.breed }}
           <div class="text-danger small">{{ form.breed.errors }}</div>
         </div>
         <div class="mb-3 col-md-4">
-          <label class="form-label text-primary fw-bold">Initial Count</label>
+          <label class="form-label text-primary ">Initial Count</label>
           {{ form.initial_count }}
           <div class="text-danger small">{{ form.initial_count.errors }}</div>
         </div>
@@ -98,12 +103,12 @@
       // Switch is ON -> Livestock mode
       cropSec.classList.add('d-none');
       liveSec.classList.remove('d-none');
-      hiddenInput.value = 'LIVESTOCK'; // Matches your Django model choice key
+      hiddenInput.value = 'livestock'; // Matches your Django model choice key
     } else {
       // Switch is OFF -> Crop mode
       cropSec.classList.remove('d-none');
       liveSec.classList.add('d-none');
-      hiddenInput.value = 'CROP'; // Matches your Django model choice key
+      hiddenInput.value = 'crop'; // Matches your Django model choice key
     }
   });
 </script>
