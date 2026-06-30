@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.db.models import Sum
+from django.db.models import Sum, Count, Q
 
 # Create your views here.
 from activities.models import Activity
@@ -55,12 +55,17 @@ def dashboardView(request):
         greetings = "Morning"
     elif 12<=  current_hour < 17:
         greetings = "Afternoon"
-
-    else:greetings = "Evening"
+    else:
+        greetings = "Evening"
     enterprise = Enterprise.objects.filter(farmer=user)
     current_enterprise = enterprise.first()
 
-    tasks = Task.objects.filter(status__in= ['pending', 'overdue']).order_by('due_date')[:5]
+    tasks = Task.objects.filter(is_complete = False).order_by('due_date')[:5]
+    counts= {
+        'total_pending' : Task.objects.pending().count(),
+        'total_overdue' : Task.objects.overdue().count(),
+    }
+    
 
     recent_activities = Activity.objects.filter(enterprise=current_enterprise).order_by('-created_at')[:5]
     cycles = Cycle.objects.filter(enterprise=current_enterprise)
@@ -73,6 +78,7 @@ def dashboardView(request):
     context = {
         'greeting' : greetings,
         'tasks':tasks,
+        'count':counts,
         "chart_labels": chart_data["labels"],
         "chart_income": chart_data["income"],
         "chart_expense": chart_data["expense"],

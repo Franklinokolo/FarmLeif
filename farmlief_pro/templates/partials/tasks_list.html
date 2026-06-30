@@ -1,61 +1,53 @@
- <!-- CARD -->
-                                {% if tasks %}
-                                   {% for task in tasks %}
-                                   {% if forloop.last and tasks.has_next %}
-                                    <div class='activity-mobile-card'
-                                        hx-get="{% url 'task:list' %}?status={{current_state}}&page={{ tasks.next_page_number }}" 
-                                        hx-trigger="revealed"
-                                        hx-target = "#result"
-                                        hx-swap="beforeend">
+<!-- CARD -->
+{% if tasks %}
+    {% for task in tasks %}
+        {% if forloop.last and tasks.has_next %}
+            <div class='activity-mobile-card'
+                hx-get="{% url 'task:list' %}?status={{ current_state }}&page={{ tasks.next_page_number }}" 
+                hx-trigger="revealed"
+                hx-target="#result"
+                hx-swap="beforeend">
+        {% else %}
+            <div class="activity-mobile-card">
+        {% endif %}
 
-                                    {% else %}
-                                    <div class="activity-mobile-card">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <h6 class="mb-0 bold p-color">
+                        {{ task.title|truncatewords:3|title }}
+                    </h6>
 
-                                   {% endif %}
+                    <small class="">
+                        {{ task.Cycle }}
+                    </small>
+                    <p class="s1 mb-0 mt-1 light-color">
+                        {{ task.due_date }}, {{ task.time|time:'H:i' }}
+                    </p>
+                </div>
 
-                                    <div class="d-flex justify-content-between align-items-start">
+                <div class="d-flex justify-content-end align-items-center gap-2 mb-1 me-1">
+                    <span class="badge s1 
+                        {% if task.priority == 'high' %}danger-badge-bg
+                        {% elif task.priority == 'medium' %}warning-badge-bg
+                        {% else %}primary-badge-bg{% endif %}">
+                        {{ task.priority|title }}
+                    </span>
+                    
+                    <!-- 2. FIXED: Capitalized 'Pending' to match model property exactly -->
+                    <span class="badge s1 {% if task.status_label == 'Overdue' %}danger-badge-bg
+                        {% elif task.status_label == 'Pending' %}warning-badge-bg
+                        {% else %}success-badge-bg{% endif %}">
+                        {{ task.status_label }} 
+                    </span>
+                </div>
 
-                                        <div>
-                                            <h6 class="mb-0 bold p-color">
-                                                {{task.title | truncatewords:3 | title}}
-                                            </h6>
-
-                                            <small class=" ">
-                                                {{task.Cycle}}
-                                            </small>
-                                            <p class="s1 mb-0 mt-1 light-color">
-                                                   {{task.due_date}}, {{task.time}}
-                                            </p>
-                                        </div>
-
-                                        <div class="d-flex justify-content-end align-items-center gap-2 mb-1 me-1">
-
-                                                
-                                                <span class="badge s1 
-                                                {% if task.priority == 'high' %}danger-badge-bg
-                                                {% elif task.priority == 'medium' %}warning-badge-bg
-                                                {% else %}primary-badge-bg{% endif %}">
-                                                    {{task.priority}}
-                                                </span>
-                                                
-                                                <span class="badge s1  {% if task.status == 'overdue' %}danger-badge-bg
-                                                {% elif task.status == 'pending' %}warning-badge-bg
-                                                {% else %}success-badge-bg{% endif %}">
-                                                    {{task.status}}
-                                                </span>
-
-                                        </div>
-
-                                        <a href="#" class="view-link">
-                                            <i class="bi bi-three-dots-vertical"></i>
-                                        </a>
-
-                                    </div>
-
-                                    
-                                    </div>
-                                   {% endfor %}
-                                {% else %}
-                                    <h2>NO Task Scheduled Yet</h2>
-                                {% endif %}   
-                                <!-- END CARD -->
+                <a href="#" class="view-link">
+                    <i class="bi bi-three-dots-vertical"></i>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h2 class="text-center light-color py-4">No Task Scheduled Yet</h2>
+{% endif %}   
+<!-- END CARD -->

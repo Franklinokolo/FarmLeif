@@ -67,7 +67,7 @@
                         <div class="col-lg-3 col-6 mb-2">
                             <div class="card card-custom task-alert p-3">
                                 <small>Scheduled Tasks</small>
-                                <p class=" s4 bolder mb-0">20 P | 10 OVD</p>
+                                <p class=" s4 bolder mb-0">{{ count.total_pending }} P | {{ count.total_overdue }} OVD</p>
                                 <small class="s1">Pending | Overdue</small>
 
                             </div>
@@ -87,10 +87,10 @@
                                 <div class="content gap-1 d-flex flex-column">
                                     {% if tasks %}
                                         {% for task in tasks %}
-                                            {% if task.status == 'overdue' %}
+                                            {% if task.status_label == 'Overdue' %}
                                                 <p class="text-danger task s2"><a href="#"><i class=" bi bi-circle-fill me-2"></i>
-                                                    {{task.time}}-
-                                                    {{task.title | title | truncatewords:3 }}</a>
+                                                    {{task.time | time:'H:i'}}-
+                                                    {{task.title | title | truncatewords:3 }} (on {{task.due_date | date:'M,d'}} )</a>
                                                 </p>
                                             {% else %}
                                                 <p class="text-warning task s2"><a href="#"><i class="bi bi-circle-fill me-2"></i>

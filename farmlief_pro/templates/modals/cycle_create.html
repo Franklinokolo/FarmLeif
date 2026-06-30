@@ -9,11 +9,11 @@
       {% csrf_token %}
 
       <!-- TOGGLE SWITCH FOR TYPE -->
-      <div class="row mb-3 p-0">
+      <div class="row mb-4 p-0">
         <div class="col-12 d-flex align-items-center  gap-3">
           <span class="text-success">🌱 Crop</span>
           <div class="form-check form-switch form-switch-xl m-0">
-            <input class="form-check-input" type="checkbox" id="cycleTypeToggle" style="cursor: pointer; width: 3em; height: 1em;">
+            <input class="form-check-input p-color white-bg" type="checkbox" id="cycleTypeToggle" style="cursor: pointer; width: 3em; height: 1em;">
           </div>
           <span class="text-primary">🐄 Livestock</span>
         </div>
@@ -53,7 +53,7 @@
       </div>
 
       <!-- SECTION: Crop Details (Visible by default) -->
-      <div id="crop-section" class="row border-top pt-3 mt-2">
+      <div id="crop-section" class="row  pt-3 mt-2">
         <div class="mb-3 col-md-12">
           <label class="form-label text-success ">Crop Type</label>
           {{ form.crop_type }}
@@ -62,7 +62,7 @@
       </div>
 
       <!-- SECTION: Livestock Details (Hidden by default) -->
-      <div id="livestock-section" class="row border-top pt-3 mt-2 d-none">
+      <div id="livestock-section" class="row  pt-3 mt-2 d-none">
         <div class="mb-3 col-md-4">
           <label class="form-label text-primary ">Livestock Type</label>
           {{ form.livestock_type }}
