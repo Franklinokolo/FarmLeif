@@ -412,6 +412,9 @@ input[type="checkbox"] {
 /* mobilephone view */
 @media (max-width: 576px) {
 
+  .modal-dialog{
+    max-width: 100%;
+  }
   /* tab link */
   .tab-link{
     text-decoration: none;

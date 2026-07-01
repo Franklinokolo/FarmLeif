@@ -7,3 +7,7 @@ def assets_list(request):
 
 def assets_detail(request):
     return render(request, 'assets_detail.html')
+
+
+def assets_create(request):
+    pass

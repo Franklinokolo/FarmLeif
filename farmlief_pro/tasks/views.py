@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 from .models import Task
 from .forms import taskForm
-import time
+import time, json
 
 def alltask(request):
     state = request.GET.get('status', 'all')
@@ -35,7 +35,7 @@ def alltask(request):
     }
     
     # 4. Pagination
-    paginator = Paginator(tasks, 3)
+    paginator = Paginator(tasks, 5)
     page_obj = paginator.get_page(page_number)
 
     context = {
@@ -57,15 +57,17 @@ def TaskCreate(request):
         form = taskForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("""
-            <script>
-              const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
-              modal.hide();
-
-              document.body.dispatchEvent(new Event("activityAdded"));
-            </script>
-            """)
+            
+            # Create an empty success response
+            response = HttpResponse(status=204) 
+            
+            # Send triggers back to HTMX to execute JavaScript on the frontend
+            response['HX-Trigger'] = json.dumps({
+                "activityAdded": "", 
+                "showToast": "Task created successfully!"
+            })
+            return response
     else:
-    
         form = taskForm()
-    return render(request, 'modals/task_create.html', {'form' : form})
+        
+    return render(request, 'modals/task_create.html', {'form': form})

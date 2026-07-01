@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Count
-
+import json
 from .models import Cycle
 from activities.models import Activity
 from .forms import cycleForm
@@ -43,14 +43,15 @@ def cycleCreate(request):
         form =  cycleForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("""
-                <script>
-                const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
-                modal.hide();
-
-                document.body.dispatchEvent(new Event("activityAdded"));
-                </script>
-                """)
+            # Create an empty success response
+            response = HttpResponse(status=204) 
+                
+            # Send triggers back to HTMX to execute JavaScript on the frontend
+            response['HX-Trigger'] = json.dumps({
+                    "activityAdded": "", 
+                    "showToast": "Batch created successfully!"
+                })
+            return response
         else:
             print(form.errors)
     else:

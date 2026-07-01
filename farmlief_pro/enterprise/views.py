@@ -9,6 +9,7 @@ from transactions.models import Transaction
 from .models import Enterprise, Farmer
 from tasks.models import Task
 from .forms import EnterpriseForm
+import json
 
 from django.utils import timezone
 from datetime import timedelta
@@ -120,16 +121,22 @@ def enterpriseList(request):
 
 # Enterprise Create
 def enterpiseCreate(request):
-    form = EnterpriseForm(request.POST)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        
-        return HttpResponse("""
-            <script>
-              const modal = bootstrap.Modal.getInstance(document.getElementById('modalform'));
-              modal.hide();
+    
+    if request.method == 'POST':
+        form = EnterpriseForm(request.POST)
+        if form.is_valid():
 
-              document.body.dispatchEvent(new Event("activityAdded"));
-            </script>
-            """)
+            form.save()
+            
+            # Create an empty success response
+            response = HttpResponse(status=204) 
+                
+            # Send triggers back to HTMX to execute JavaScript on the frontend
+            response['HX-Trigger'] = json.dumps({
+                    "activityAdded": "", 
+                    "showToast": "Enterprise created successfully!"
+                })
+            return response
+    else:
+        form = EnterpriseForm(user=request.user)
     return render(request, 'modals/enterprise_create.html', {'form' : form})
