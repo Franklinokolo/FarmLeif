@@ -411,6 +411,23 @@ input[type="checkbox"] {
 
 /* mobilephone view */
 @media (max-width: 576px) {
+  body{
+    background-color: #ffffffda;
+  }
+
+.greeting-dash {
+        background: var(--primary);
+        color: var(--white);
+        padding: 20px;
+        height: 40dvh;
+        align-items: start;
+        /* max-width: 100%; */
+        border-radius: 0px 0px 20px 20px;
+    }
+
+  .card-custom{
+    border:#00000075 1px solid;
+  }
 
   .modal-dialog{
     max-width: 100%;
@@ -554,5 +571,6 @@ input[type="checkbox"] {
   .mu1{
     margin-top: 16px;
   }
+
   
 }

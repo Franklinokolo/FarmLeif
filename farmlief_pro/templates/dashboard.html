@@ -2,10 +2,10 @@
 {% load static %}
 {% block page_content %}
 <!-- GREETIINGS  -->
-<div class="row  justify-content-between align-items-center g-3 mb-4">
+<div class="row  justify-content-between greeting-dash align-items-center g-3 mb-4">
 
 
-                        <div class="col-md-8">
+                        <div class="col-md-8 ">
                             <h4 class=" s4 bold mb-0">Good {{greeting}}, {{request.user.username | capfirst}}</h4>
                             <small class="s2">Here’s overview of your farm</small>
                         </div>
@@ -33,7 +33,7 @@
                             <div class="card h-100 card-custom p-3 ">
                                 <div class="top d-flex">
                                     <small class="s3">Total Assets</small>
-                                    <i class="bi bi-box ms-auto"></i>
+                                    <i class="bi bi-wallet2 ms-auto"></i>
                                 </div>
                                 <p class=" s4 bolder mb-0">₦100,000,000</p>
                                 <small class="text-dark s1">-22% from last month</small>
@@ -44,7 +44,7 @@
                             <div class="card h-100 card-custom p-3">
                                 <div class="top d-flex">
                                     <small class="s3">Total Income</small>
-                                    <i class="bi bi-box ms-auto"></i>
+                                    <i class="bi bi-graph-up-arrow ms-auto"></i>
                                 </div>
                                 <p class=" s4 bolder mb-0">₦20,000,000</p>
                                 <small class="text-dark s1">-22% from last month</small>
@@ -56,7 +56,7 @@
                             <div class="card h-100 card-custom p-3">
                                 <div class="top d-flex">
                                     <small class="s3">Expense</small>
-                                    <i class="bi bi-box ms-auto"></i>
+                                    <i class="bi bi-graph-down-arrow ms-auto"></i>
                                 </div>
                                 <p class=" s4 bolder mb-0">₦10,000,000</p>
                                 <small class="text-dark s1">-22% from last month</small>

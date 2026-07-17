@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-&pjz8rg!x-z67$@o1tc22%j)km-^uc2ih^_-!e)$8*@1^lmcs+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.2.240', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'pwa',
 
     # my apps
     "enterprise",
@@ -140,3 +141,24 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 # STATIC_ROOT = BASE_DIR / "staticfiles"
 
+
+
+PWA_APP_NAME = 'Lief Farm'
+PWA_APP_DESCRIPTION = "A farm management system that helps farmers manage their farms efficiently."
+PWA_APP_THEME_COLOR = '#0A0A0A'
+PWA_APP_BACKGROUND_COLOR = '#FFFFFF'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/lief.png',
+        'sizes': '160x160'
+    },
+    {
+        'src': '/static/images/lief.png',
+        'sizes': '512x512',
+        'purpose': 'any maskable'
+    }
+]

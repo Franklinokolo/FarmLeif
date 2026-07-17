@@ -33,7 +33,6 @@
                         {{ task.priority|title }}
                     </span>
                     
-                    <!-- 2. FIXED: Capitalized 'Pending' to match model property exactly -->
                     <span class="badge s1 {% if task.status_label == 'Overdue' %}danger-badge-bg
                         {% elif task.status_label == 'Pending' %}warning-badge-bg
                         {% else %}success-badge-bg{% endif %}">
